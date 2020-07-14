@@ -1,25 +1,15 @@
 import React from "react";
-import "./App.css";
+import "./assets/styles/App.css";
 
-import Home from "./pages/Home";
-import Houses from "./pages/Houses";
-import SingleHouse from "./pages/SingleHouse";
-import Error from "./pages/Error";
+import Navbar from "./components/smart/Navbar";
 
-import Navbar from "./components/header/Navbar";
-
-import { Switch, Route } from "react-router-dom";
+import Routes from './routes/Routes'
 
 function App() {
   return (
     <>
       <Navbar />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/houses/" component={Houses} />
-        <Route exact path="/houses/:slug" component={SingleHouse} />
-        <Route component={Error} />
-      </Switch>
+      <Routes/>
     </>
   );
 }
