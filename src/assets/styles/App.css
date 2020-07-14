@@ -5,11 +5,11 @@
 }
 :root {
   --primaryColor: #FCB332;
-  --mainWhite: #0B3C5D;
-  --offWhite: #328CC1;
+  --mainWhite: #ffffff;
+  --offWhite: #0b3c5d;
   --mainBlack: #1D2731;
-  --mainGrey: #0B3C5D;
-  --darkGrey: #328CC1;
+  --mainGrey: #328cc1;
+  --darkGrey: #0b3c5d;
   --mainTransition: all 0.3s linear;
   --mainSpacing: 3px;
   --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
@@ -121,7 +121,7 @@ h6 {
   display: block;
   text-decoration: none;
   padding: 1rem 0;
-  color: var(--mainBlack);
+  color: var(--mainWhite);
   transition: var(--mainTransition);
   text-align: center;
   font-size: 1rem;
@@ -159,7 +159,7 @@ h6 {
 .defaultHero,
 .housesHero {
   min-height: calc(100vh - 66px);
-  background: url("../../images/home-real-estateMODIFICADA.jpg") center/cover no-repeat;
+  background: url("../../assets/images/landing_house.jpg") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
