@@ -5,10 +5,16 @@
 }
 :root {
   --primaryColor: #FCB332;
+  --primaryColorShadow: #e2a12d;
+  --primaryColorDark: #c98f28;
+
   --mainWhite: #ffffff;
   --offWhite: #0b3c5d;
   --mainBlack: #1D2731;
+  
   --mainGrey: #328cc1;
+  --mainGreyShadow: #2d7ead;
+
   --darkGrey: #0b3c5d;
   --mainTransition: all 0.3s linear;
   --mainSpacing: 3px;
@@ -66,8 +72,9 @@ h6 {
   cursor: pointer;
 }
 .btn-primary:hover {
-  background: transparent;
-  color: var(--primaryColor);
+  background: var(--primaryColorDark);
+  color:var(--mainBlack);
+  border: 3px solid var(--primaryColorDark);
 }
 .loading {
   text-transform: capitalize;
@@ -96,9 +103,14 @@ h6 {
   padding: 0.75rem 2rem;
   background: var(--offWhite);
   z-index: 1;
-}
-.nav-header {
   display: flex;
+}
+
+.nav-right{
+  float: right;
+}
+
+.nav-header {
   justify-content: space-between;
 }
 .nav-btn {
