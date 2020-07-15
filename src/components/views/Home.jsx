@@ -8,7 +8,7 @@ const Home = () => {
     <>
       <Hero>
         <Banner
-          title="u-hom"
+          title="GoHOME's"
           subtitle="Reserva tu visita gratuitamente"
         >
           <Link to="/houses" className="btn-primary">
