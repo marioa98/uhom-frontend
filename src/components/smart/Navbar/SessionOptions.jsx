@@ -1,5 +1,5 @@
 import React from 'react';
-import "../../../assets/styles/buttons.css";
+import "../../../assets/styles/General/buttons.css";
 import {Button} from "semantic-ui-react";
 import {useHistory} from 'react-router-dom';
 
@@ -13,7 +13,7 @@ export function SessionOptions(){
   return(
     <div>
       <Button.Group size="small">
-        <Button className="btn-signin">
+        <Button className="btn-signin" onClick={() => goTo("/signin")}>
           Sign in
         </Button>
         <Button.Or/>
