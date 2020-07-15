@@ -14,11 +14,11 @@ export function SessionOptions(){
     <div>
       <Button.Group size="small">
         <Button className="btn-signin" onClick={() => goTo("/signin")}>
-          Sign in
+          Registrarse
         </Button>
-        <Button.Or/>
+        <Button.Or text="o"/>
         <Button className="btn-login" onClick={() => goTo("/login")}>
-          Login
+          Iniciar sesión
         </Button>
       </Button.Group>
     </div>

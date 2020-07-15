@@ -1,29 +1,27 @@
 import React, {Component} from 'react';
-import {Button} from 'semantic-ui-react';
+import {Button, Form} from 'semantic-ui-react';
 import "../../../assets/styles/General/forms.css";
 
 export class LoginForm extends Component{
   render(){
     return(
-      <div className="ui large form basic-form">
-        <div className="fields">
-          <div className="required field">
-            <label>Correo electrónico:</label>
-            <input type="email" placeholder="Correo electrónico"/>
-          </div>
-        </div>
-        
-        <div className="fields">
-          <div className=" required field">
-            <label>Contraseña:</label>
-            <input type="password" placeholder="Contraseña"/>
-          </div>
-        </div>
+      <Form className="large basic-form">
+        <Form.Field className="required">          
+          <label>Correo electrónico:</label>
+          <input type="email" placeholder="Correo electrónico"/>
+        </Form.Field>
 
+        <Form.Field 
+          className="required"
+        >
+          <label>Contraseña:</label>
+          <input type="password" placeholder="Contraseña"/>
+        </Form.Field>
+        
         <Button className="btn-login">
           Iniciar Sesión
         </Button>
-      </div>
+      </Form>
     )
   }
 }

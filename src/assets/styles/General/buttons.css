@@ -10,6 +10,7 @@
 .ui.button.btn-login{
   background-color: var(--mainGrey);
   color: var(--mainWhite);
+  align-items: baseline;
 }
 
 .ui.button.btn-login:hover{
