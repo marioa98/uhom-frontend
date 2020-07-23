@@ -113,6 +113,10 @@ h6 {
   float: none;
 }
 
+.filter-center{
+  text-align: center;
+}
+
 .nav-header {
   justify-content: space-between;
 }
@@ -524,3 +528,10 @@ h6 {
   }
 }
 /* end of houses fitler*/
+/*  Footer*/
+.footer-homepage{
+  text-align: center;
+  padding: 1rem;
+  /* background-color: var(--primaryColorDark); */
+  background-color: var(--primaryColorShadow);
+}

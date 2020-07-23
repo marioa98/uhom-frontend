@@ -1,12 +1,13 @@
 import React from "react";
-
-import { Link } from "react-router-dom";
+import ShowCase from '../smart/showcase/ShowCase'
 
 const Houses = () => {
   return (
-    <>
+    <>             
+     <ShowCase/>
       
-      <h1>casas</h1>
+     
+      
       
     </>
   );

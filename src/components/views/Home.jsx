@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Hero from "../dumb/Hero";
 import Banner from "../dumb/Banner";
+import Footer from './Footer'
 
 const Home = () => {
   return (
@@ -16,7 +17,7 @@ const Home = () => {
           </Link>
         </Banner>
       </Hero>
-
+      <Footer/>
     </>
   );
 };
