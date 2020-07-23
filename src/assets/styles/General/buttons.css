@@ -16,3 +16,8 @@
 .ui.button.btn-login:hover{
   background-color: var(--mainGreyShadow);
 }
+
+.button-container{
+  display: flex;
+  justify-content: space-between;
+}
