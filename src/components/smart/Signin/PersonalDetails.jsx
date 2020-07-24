@@ -12,6 +12,8 @@ export class PersonalDetails extends Component{
 
   render(){
     const {values} = this.props
+    const {setters} = this.props
+    console.log(setters)
     return(
       <div>
         <h3>Información del usuario</h3>
