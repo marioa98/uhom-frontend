@@ -16,6 +16,9 @@
   --mainGreyShadow: #2d7ead;
 
   --darkGrey: #0b3c5d;
+  --error: #e3000a;
+  --errorBackground: #fff6f6;
+
   --mainTransition: all 0.3s linear;
   --mainSpacing: 3px;
   --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);

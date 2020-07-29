@@ -1,76 +1,91 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Button, Form, Select} from 'semantic-ui-react';
 import {TiArrowRightThick} from "react-icons/ti";
 import {DateInput} from "semantic-ui-calendar-react";
 import {genderOptions} from "../../../assets/resources/genders";
+import { useForm } from "react-hook-form"
 
-export class PersonalDetails extends Component{
-  continue = (e) =>{
-    e.preventDefault()
-    this.props.nextStep()
+export function PersonalDetails(props){
+  const {nextStep, setters, values} = props
+  
+  const { register } = useForm();
+
+  const _continue = (e) => {
+    e.preventDefault();
+    nextStep();
   }
 
-  render(){
-    const {values} = this.props
-    const {setters} = this.props
-    console.log(setters)
-    return(
-      <div>
-        <h3>Información del usuario</h3>
-        <Form.Group widths="equal">
-          <Form.Input
+  return(
+    <div>
+      <h3>Información del usuario</h3>
+      <Form.Group widths="equal">
+        <Form.Field required>
+          <label htmlFor="names">Nombres</label>
+          <input 
+            className="ui input"
             name="names"
-            label="Nombre(s):"
-            required={true}
             placeholder="Nombre(s)"
-            onChange={this.props.handleChange('names')}
+            onChange={(e) => setters.setNames(e.target.value)}
             defaultValue={values.names}
+            ref={register}
           />
-          <Form.Input
-            name="surnames"
-            label="Apellido(s):"
-            required={true}
-            placeholder="Apellido(s)"
-            onChange={this.props.handleChange('surnames')}
-            defaultValue={values.surnames}
+        </Form.Field>
+        {/* <Form.Input
+          name="names"
+          label="Nombre(s):"
+          required={true}
+          placeholder="Nombre(s)"
+          onChange={(e, data) => setters.setNames(data.value)}
+          defaultValue={values.names}
+          ref={register}
+        /> */}
+        <Form.Input
+          name="surnames"
+          label="Apellido(s):"
+          required={true}
+          placeholder="Apellido(s)"
+          onChange={(e, data) => setters.setSurnames(data.value)}
+          defaultValue={values.surnames}
+          ref={register}
+        />
+      </Form.Group>
+  
+      <Form.Group widths="equal">
+        <Form.Input required={true} label="Fecha de nacimiento:">
+          <DateInput
+            name="date"
+            placeholder="Fecha de nacimiento"
+            value={values.birth_date}
+            onChange={(e, data) => {setters.setBirthDate(data.value)}}
+            startMode="year"
+            animation={null}
+            popupPosition="top right"
+            clearable={true}
+            dateFormat="YYYY-MM-DD"
+            closable={true}
+            ref={register}
           />
-        </Form.Group>
-
-        <Form.Group widths="equal">
-          <Form.Input required={true} label="Fecha de nacimiento:">
-            <DateInput
-              name="date"
-              placeholder="Fecha de nacimiento"
-              value={values.birth_date}
-              onChange={this.props.handleChange('birth_date')}
-              startMode="year"
-              animation={null}
-              popupPosition="top right"
-              clearable={true}
-              dateFormat="YYYY-MM-DD"
-              closable={true}
-            />
-          </Form.Input>
-
-          <Form.Input 
-            required={true}
-            label="Género"
-          >
-            <Select 
-              placeholder="Selecciona tu género" 
-              options={genderOptions}
-              value={values.gender}
-              onChange={this.props.handleChange('gender')}
-            />
-          </Form.Input>
-        </Form.Group>
-
-        <div className="button-container">
-          <Button className="btn-login" onClick={this.continue}>
-            Siguiente <TiArrowRightThick/>
-          </Button>
-        </div>
+        </Form.Input>
+  
+        <Form.Input 
+          required={true}
+          label="Género"
+        >
+          <Select 
+            placeholder="Selecciona tu género" 
+            options={genderOptions}
+            value={values.gender}
+            onChange={(e, data) => setters.setGender(data.value)}
+            ref={register}
+          />
+        </Form.Input>
+      </Form.Group>
+  
+      <div className="button-container">
+        <Button className="btn-login" onClick={(e) => _continue(e)}>
+          Siguiente <TiArrowRightThick/>
+        </Button>
       </div>
-    )
-  }
+    </div>
+  )
 }
