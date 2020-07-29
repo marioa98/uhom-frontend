@@ -16,14 +16,3 @@ export const signupValidations = Yup.object().shape({
   phone_number: yupRequiredString
     .matches(/(\d{10}|\(?\d{3}\)?[-. ]\d{3}[-.]\d{4})/, "⚠ El número de télefono debe de seguir el siguiente formato: 555-555-5555")
 })
-
-const equalTo = (ref, msg) => {
-  return Yup.mixed().test({
-    name: 'equalTo',
-    exclusive: false,
-    msg: msg,
-    params: {
-
-    }
-  })
-}

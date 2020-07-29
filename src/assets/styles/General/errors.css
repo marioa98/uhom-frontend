@@ -8,7 +8,9 @@
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
   border-radius: 0.3rem;
+  margin-top: 0.5rem;
 }
 
-.input-error input{
+.ui.input.input-error{
+  background-color: #000000;
 }

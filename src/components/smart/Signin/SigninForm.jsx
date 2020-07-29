@@ -1,35 +1,25 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import React from "react";
+import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers";
 import { signupValidations } from "../../../services/validations/validationSchemas"
 import { Button, Form} from "semantic-ui-react";
 import { TiHome } from "react-icons/ti";
+import Cleave from "cleave.js/react";
 import "../../../assets/styles/General/divs.css";
 import "../../../assets/styles/General/errors.css"
+import UsersController from "../../../controllers/UsersController"
+
+const isDisabled = (errors) => Object.keys(errors).length !== 0 ? true : false
 
 export function SigninForm(){
-  const user = {
-    names: '',
-    surnames: '',
-    email: '',
-    phone_number: '',
-    password: '',
-    password_confirmation: '',
-  }
-  const [form, setState] = useState(user)
-  const { register, handleSubmit, errors } = useForm({
+  
+  const { register, handleSubmit, errors, control } = useForm({
     resolver: yupResolver(signupValidations)
   });
 
-  const updateUser = e => {
-    const target = e.target
-    setState({
-      ...form,
-      [target.name]: target.value
-    })
+  const onSubmit = data => {
+    console.log(data)
   }
-
-  const onSubmit = data => console.log(data)
 
   return(
     <Form className="large basic-form" onSubmit={handleSubmit(onSubmit)}>
@@ -39,12 +29,11 @@ export function SigninForm(){
           <input
             name="names"
             placeholder="Nombre(s)"
-            onChange={updateUser}
             ref={register}
           />
         </div>
+        {errors.names && <p className="dark-error">{errors.names.message}</p> }
       </Form.Field>
-      {errors.names && <p className="dark-error">{errors.names.message}</p> }
 
       <Form.Field required>
         <label> Apellido(s): </label>
@@ -52,12 +41,11 @@ export function SigninForm(){
           <input
             name="surnames"
             placeholder="Apellido(s)"
-            onChange={updateUser}
             ref={register}
           />
         </div>
+        {errors.surnames && <p className="dark-error">{errors.surnames.message}</p> }
       </Form.Field>
-      {errors.surnames && <p className="dark-error">{errors.surnames.message}</p> }
 
       <Form.Group widths="equal">
         <Form.Field required>
@@ -67,26 +55,32 @@ export function SigninForm(){
               name="email"
               type="email"
               placeholder="Email"
-              onChange={updateUser}
               ref={register}
             />
           </div>
+          {errors.email && <p className="dark-error">{errors.email.message}</p> }
         </Form.Field>
-        {errors.email && <p className="dark-error">{errors.email.message}</p> }
         
         <Form.Field required>
           <label> Celular: </label>
           <div className="ui input">
-            <input
+            <Controller
               name="phone_number"
-              type="text"
-              placeholder="Celular"
-              onChange={updateUser}
-              ref={register}
+              control={control}
+              as={
+                <Cleave
+                  options={{
+                    numericOnly: true,
+                    blocks: [3,3,4],
+                    delimiter: '-'
+                  }}
+                  placeholder="Celular"
+                />
+              }
             />
           </div>
+          {errors.phone_number && <p className="dark-error">{errors.phone_number.message}</p> }
         </Form.Field>
-        {errors.phone_number && <p className="dark-error">{errors.phone_number.message}</p> }
       </Form.Group>
 
       <Form.Group widths="equal">
@@ -98,10 +92,10 @@ export function SigninForm(){
               name="password"
               type="password"
               placeholder="Contraseña"
-              onChange={updateUser}
               ref={register}
             />
           </div>
+          {errors.password && <p className="dark-error">{errors.password.message}</p> }
         </Form.Field>
 
         <Form.Field required>
@@ -111,20 +105,17 @@ export function SigninForm(){
               name="password_confirmation"
               type="password"
               placeholder="Confirmar contraseña"
-              onChange={updateUser}
               ref={register}
             />
           </div>
+          {errors.password_confirmation && <p className="dark-error">{errors.password_confirmation.message}</p> }
         </Form.Field>
 
         <div>
-          {errors.password && <p className="dark-error">{errors.password.message}</p> }
-          {errors.password_confirmation && <p className="dark-error">{errors.password_confirmation.message}</p> }
         </div>
       </Form.Group>
-
       <div className="fluid">
-        <Button className="btn-login" type="submit">
+        <Button className="btn-login" type="submit" disabled={isDisabled(errors)}>
           <TiHome/> Comenzar
         </Button>
       </div>
