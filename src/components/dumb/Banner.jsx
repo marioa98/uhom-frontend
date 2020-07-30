@@ -1,4 +1,5 @@
 import React from "react";
+import '../../assets/styles/General/hero/banner.css'
 const Banner = ({ children, title, subtitle }) => {
   return (
     <div className="banner">

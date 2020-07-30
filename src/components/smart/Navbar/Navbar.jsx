@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import {SessionOptions} from "./SessionOptions";
 import { Avatar } from "./Avatar";
+import '../../../assets/styles/General/navbar.css'
 export default class Navbar extends Component {
   state = {
     isOpen: false
@@ -38,7 +39,7 @@ export default class Navbar extends Component {
               <Link to="/houses">Propiedades</Link>
             </li>
             <li>
-              <Link to="/">Recursos</Link>
+              <Link to="/resoursers">Recursos</Link>
             </li>
             <li>
               <Link to="/aboutus">Acerca de</Link>

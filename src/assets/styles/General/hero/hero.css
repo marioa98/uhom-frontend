@@ -1,0 +1,18 @@
+/* Hero */
+.defaultHero,
+.housesHero {
+  min-height: calc(100vh - 66px);
+  background: url("../../../images/landing_house.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.housesHero {
+  min-height: calc(100vh - 66px);
+  background-image: url("../../../images/landing_houseERROR.jpg");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* End of Hero */

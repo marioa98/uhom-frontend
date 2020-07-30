@@ -1,5 +1,6 @@
 import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
+import '../../../../assets/styles/General/showcase.css'
 
 const options = [
   { key: 1, text: 'Mostrar todas', value: 1 },
@@ -10,7 +11,7 @@ const options = [
 ]
 
 const SelectiveFilter = () => (
-  <Dropdown selection options={options} placeholder='Filtrar por secciones' />
+  <Dropdown options={options} selection placeholder='Mostrar todas' className='dropdown-selective'/>
 )
 
 export default SelectiveFilter
