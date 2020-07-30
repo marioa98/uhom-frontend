@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { FaAlignRight } from "react-icons/fa";
 import {SessionOptions} from "./SessionOptions";
 import { Avatar } from "./Avatar";
-import { Menu } from "semantic-ui-react";
 export default class Navbar extends Component {
   state = {
     isOpen: false

@@ -1,8 +1,6 @@
 import React from "react"
-import { Image, Header, Icon, Dropdown, Menu } from "semantic-ui-react";
-import { FaUserCircle } from "react-icons/fa"
+import { Dropdown} from "semantic-ui-react";
 import "../../../assets/styles/General/icons.css"
-import default_picture from "../../../assets/images/user.png";
 
 export function Avatar(){
   return(
