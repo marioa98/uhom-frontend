@@ -6,10 +6,9 @@ import { Button, Form} from "semantic-ui-react";
 import { TiHome } from "react-icons/ti";
 import Cleave from "cleave.js/react";
 import "../../../assets/styles/General/divs.css";
-import "../../../assets/styles/General/errors.css"
-import UsersController from "../../../controllers/UsersController"
-
-const isDisabled = (errors) => Object.keys(errors).length !== 0 ? true : false
+import "../../../assets/styles/General/errors.css";
+import UsersController from "../../../controllers/UsersController";
+import {disableButton} from "../../../services/validations/submitValidationHelper";
 
 export function SigninForm(){
   
@@ -17,12 +16,12 @@ export function SigninForm(){
     resolver: yupResolver(signupValidations)
   });
 
-  const onSubmit = data => {
+  const submit = data => {
     console.log(data)
   }
 
   return(
-    <Form className="large basic-form" onSubmit={handleSubmit(onSubmit)}>
+    <Form className="large basic-form" onSubmit={handleSubmit(submit)}>
       <Form.Field required>
         <label> Nombre(s): </label>
         <div className="ui input">
@@ -115,7 +114,7 @@ export function SigninForm(){
         </div>
       </Form.Group>
       <div className="fluid">
-        <Button className="btn-login" type="submit" disabled={isDisabled(errors)}>
+        <Button className="btn-login" type="submit" disabled={disableButton(errors)}>
           <TiHome/> Comenzar
         </Button>
       </div>

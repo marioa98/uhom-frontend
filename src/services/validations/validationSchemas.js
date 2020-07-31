@@ -16,3 +16,8 @@ export const signupValidations = Yup.object().shape({
   phone_number: yupRequiredString
     .matches(/(\d{10}|\(?\d{3}\)?[-. ]\d{3}[-.]\d{4})/, "⚠ El número de télefono debe de seguir el siguiente formato: 555-555-5555")
 })
+
+export const loginValidations = Yup.object().shape({
+  email: yupRequiredString,
+  password: yupRequiredString
+})
