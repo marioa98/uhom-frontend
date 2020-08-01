@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers";
 import { loginValidations } from "../../../services/validations/validationSchemas"
 import {Button, Form} from 'semantic-ui-react';
 
-import loginHandler from "../../../services/sessionHandlers/loginHandler";
+import loginHandler, {getToken} from "../../../services/sessionHandlers/authService";
 import {disableButton} from "../../../services/validations/submitValidationHelper";
 
 import "../../../assets/styles/General/forms.css";
@@ -19,7 +19,11 @@ export function LoginForm(){
     resolver: yupResolver(loginValidations)
   })
 
-  const submit = data => console.log(data)
+  const submit = data => {
+    // loginHandler(data)
+    const token = getToken();
+    console.log(token)
+  }
 
   return(
     <Form className="large basic-form" onSubmit={handleSubmit(submit)}>
@@ -29,6 +33,7 @@ export function LoginForm(){
           <input
             name="email"
             placeholder="Email"
+            ref={register}
           />
         </div>
         {errors.email && <p className="dark-error">{errors.email.message}</p>}

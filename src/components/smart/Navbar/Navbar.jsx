@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { FaAlignRight } from "react-icons/fa";
+import { FiMenu } from "react-icons/fi";
 import {SessionOptions} from "./SessionOptions";
 import { Avatar } from "./Avatar";
 export default class Navbar extends Component {
@@ -10,6 +10,7 @@ export default class Navbar extends Component {
   handleToggle = () => {
     this.setState({ isOpen: !this.state.isOpen });
   };
+
   render() {
     return (
       <nav className="navbar">
@@ -24,7 +25,7 @@ export default class Navbar extends Component {
               className="nav-btn"
               onClick={this.handleToggle}
             >
-              <FaAlignRight className="nav-icon" />
+              <FiMenu className="nav-icon" />
             </button>
           </div>
           <ul

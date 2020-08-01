@@ -1,4 +1,5 @@
 import axios from "axios"
+import { getToken } from "../services/sessionHandlers/authService";
 
 export default class SessionsController{
   static login(data){
@@ -6,6 +7,6 @@ export default class SessionsController{
   }
 
   static logout(){
-
+    return axios.delete(`${axios.defaults.baseURL}/logout`, { headers: { "Authorization": getToken()}})
   }
 }
