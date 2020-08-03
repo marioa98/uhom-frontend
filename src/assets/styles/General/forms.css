@@ -1,0 +1,21 @@
+.ui.form.basic-form{
+  background-color: transparent;
+  border: 1px solid var(--primaryColor);
+  padding: 4rem 5rem;
+  border-radius: 1rem;
+  justify-content: center;
+}
+
+.form-header{
+  display: flex;
+  justify-content: center;
+}
+
+.ui.form.basic-form h3{
+  color: var(--mainWhite);
+  text-align: center;
+}
+
+.ui.form.basic-form label{
+  color: var(--mainWhite);
+}

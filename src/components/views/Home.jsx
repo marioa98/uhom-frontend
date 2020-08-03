@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Hero from "../dumb/Hero";
 import Banner from "../dumb/Banner";
+import { UserContext } from "../../App"
 
 const Home = () => {
+  const {user} = useContext(UserContext);
+
+  const subtitle = () => user.isLogged 
+    ? `Bienvenido ${JSON.parse(user.user).names}.`
+    : "Reserva tu visita gratuitamente."
+  
+
   return (
     <>
       <Hero>
         <Banner
-          title="u-hom"
-          subtitle="Reserva tu visita gratuitamente"
+          title="GoHOME's"
+          subtitle={subtitle()}
         >
-          <Link to="/houses" className="btn-primary">
+          <Link to="/properties" className="btn-primary">
             <strong>Nuestras casas</strong>
           </Link>
         </Banner>
