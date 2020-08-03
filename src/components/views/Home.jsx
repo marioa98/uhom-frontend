@@ -8,7 +8,7 @@ const Home = () => {
   const {user} = useContext(UserContext);
 
   const subtitle = () => user.isLogged 
-    ? `Bienvenido ${user.user.names}.`
+    ? `Bienvenido ${JSON.parse(user.user).names}.`
     : "Reserva tu visita gratuitamente."
   
 
