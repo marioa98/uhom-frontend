@@ -5,6 +5,7 @@ import Banner from "../dumb/Banner";
 import { UserContext } from "../../App"
 import {getNames} from "../../services/userInfo";
 
+
 const Home = () => {
   const {user} = useContext(UserContext);
 
@@ -25,7 +26,7 @@ const Home = () => {
           </Link>
         </Banner>
       </Hero>
-
+  
     </>
   );
 };

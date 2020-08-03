@@ -1,4 +1,5 @@
 import React from "react";
+import '../../assets/styles/General/hero/hero.css'
 
 const Hero = ({ children, hero }) => {
   return <header className={hero}>{children}</header>;

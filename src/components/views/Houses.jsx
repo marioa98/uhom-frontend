@@ -1,12 +1,14 @@
 import React from "react";
-
-import { Link } from "react-router-dom";
+import ShowCase from '../smart/showcase/ShowCase'
+import ProperiesList from '../smart/properties/PropertiesList'
 
 const Houses = () => {
   return (
-    <>
+    <>             
+     <ShowCase/>
+      <ProperiesList/>
+     
       
-      <h1>casas</h1>
       
     </>
   );

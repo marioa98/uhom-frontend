@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import {SessionOptions} from "./SessionOptions";
 import { Avatar } from "./Avatar";
+import '../../../assets/styles/General/navbar.css'
 import {UserContext} from "../../../App"
 
 export default function Navbar(props){
