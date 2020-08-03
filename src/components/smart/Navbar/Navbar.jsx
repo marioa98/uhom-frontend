@@ -32,7 +32,7 @@ export default function Navbar(props){
             <Link to="/">Inicio</Link>
           </li>
           <li>
-            <Link to="/houses">Propiedades</Link>
+            <Link to="/properties">Propiedades</Link>
           </li>
           <li>
             <Link to="/">Recursos</Link>
