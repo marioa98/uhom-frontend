@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import Hero from "../dumb/Hero";
 import Banner from "../dumb/Banner";
 import { UserContext } from "../../App"
+import {getNames} from "../../services/userInfo";
 
 const Home = () => {
   const {user} = useContext(UserContext);
 
   const subtitle = () => user.isLogged 
-    ? `Bienvenido ${JSON.parse(user.user).names}.`
+    ? `Bienvenido ${getNames()}.`
     : "Reserva tu visita gratuitamente."
   
 

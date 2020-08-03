@@ -3,6 +3,7 @@ import { Dropdown} from "semantic-ui-react";
 import "../../../assets/styles/General/icons.css"
 import {UserContext} from "../../../App"
 import { logoutHandler } from "../../../services/sessionHandlers/authService";
+import {getNames} from "../../../services/userInfo"
 
 export function Avatar(){
   const {user, dispatch} = useContext(UserContext)
@@ -11,8 +12,6 @@ export function Avatar(){
     const token = localStorage.getItem('token');
     logoutHandler(token, dispatch);
   }
-
-  const getUserNames = () => JSON.parse(user.user).names
   
   return(
     <div>
@@ -23,7 +22,7 @@ export function Avatar(){
         icon={{name: 'user circle', color: "blue", size: "big"}}
       > 
         <Dropdown.Menu>
-          <Dropdown.Header content={`¡Hola, ${getUserNames()}!`}/>
+          <Dropdown.Header content={`¡Hola, ${getNames()}!`}/>
 
           <Dropdown.Divider />
           
