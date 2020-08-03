@@ -1,28 +1,26 @@
 import React from 'react';
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers";
-import { loginValidations } from "../../../services/validations/validationSchemas"
 import {Button, Form} from 'semantic-ui-react';
 
-import loginHandler, {getToken} from "../../../services/sessionHandlers/authService";
+import { loginValidations } from "../../../services/validations/validationSchemas"
+import loginHandler from "../../../services/sessionHandlers/authService";
 import {disableButton} from "../../../services/validations/submitValidationHelper";
+import { UserContext } from "../../../App";
 
 import "../../../assets/styles/General/forms.css";
 import "../../../assets/styles/General/divs.css";
 import "../../../assets/styles/General/errors.css"
 
-
-
 export function LoginForm(){
-
+  const { dispatch } = React.useContext(UserContext);
   const {register, handleSubmit, errors} = useForm({
     resolver: yupResolver(loginValidations)
   })
 
-  const submit = data => {
-    // loginHandler(data)
-    const token = getToken();
-    console.log(token)
+  const submit = (data, event) => {
+    event.preventDefault();
+    loginHandler(data, dispatch);
   }
 
   return(
