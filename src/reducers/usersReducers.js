@@ -1,14 +1,19 @@
 const usersReducer = (state, action) => {
   switch(action.type){
-    case 'login':
+    case 'LOGIN':
+      const user = action.payload.data;
+      const token = action.payload.headers.authorization;
       return {
-        logged: true,
-        data: state.data
+        ...state,
+        isLogged: true,
+        user: user,
+        token: token
       }
-    case 'logout':
+    case 'LOGOUT':
       return {
-        logged: false,
-        data: null
+        ...state,
+        isLogged: false,
+        user: null
       }
     default:
       return state;
