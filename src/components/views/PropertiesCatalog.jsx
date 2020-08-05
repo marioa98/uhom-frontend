@@ -34,7 +34,7 @@ export default function PropertiesCatalog(props){
 
   const PaginatorProps = {
     totalPages: totalPages,
-    activePage: page,
+    currentPage: page,
     handleChange: handleChange
   }
 
