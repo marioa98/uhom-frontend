@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios"
 import { Card, Grid, Image } from "semantic-ui-react";
+import "../../../assets/styles/General/cards.css"
 
 export default function PropertyCard(props){
   const {uuid, images,address, price, location, bathrooms, bedrooms, square_meters} 
@@ -10,7 +11,7 @@ export default function PropertyCard(props){
   const imgUri = `${axios.defaults.baseURL}${images[0]}`
   return(
     <Grid.Column style={{paddingTop: "16px"}}>
-      <Card centered fluid id={uuid} >
+      <Card centered fluid id={uuid}>
         <Card.Content
           style={{
             height: "350px",
