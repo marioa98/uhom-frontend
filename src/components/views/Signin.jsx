@@ -10,7 +10,7 @@ function Signin(){
   return(
     <>
       {
-        !user.isLogged
+        user.isLogged
         ? <Redirect to="/properties"/>
         : <div className="dark-bg-solid">
             <h3>Registrate con nosotros</h3>

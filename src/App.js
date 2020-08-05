@@ -4,6 +4,7 @@ import "./assets/styles/App.css";
 import Navbar from "./components/smart/Navbar/Navbar";
 import Routes from './routes/Routes'
 import usersReducer from "./reducers/usersReducers"
+import Footer from './components/dumb/Footer'
 
 export const UserContext = React.createContext();
 const initialUser = {
@@ -36,6 +37,7 @@ function App() {
     <UserContext.Provider value={{user, dispatch}}>
       <Navbar />
       <Routes/>
+      <Footer/>
     </UserContext.Provider>
   );
 }

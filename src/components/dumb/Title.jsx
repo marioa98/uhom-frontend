@@ -1,4 +1,5 @@
 import React from "react";
+import '../../assets/styles/General/hero/title.cc'
 
 const Title = ({ title }) => {
   return (
