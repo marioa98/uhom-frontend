@@ -1,14 +1,14 @@
 import React from 'react';
-import '../../assets/styles/General/footer.css'
+import { Segment } from 'semantic-ui-react';
 
-const Footer = () => {
-    return (
-      <>
-        <div className="footer-homepage">
-         <p>2020  © GoHOME's</p>
-        </div>
-      </>
-    );
-  };
-  
-  export default Footer;
+export default function Footer(props){
+  return(
+    <Segment
+      inverted
+      textAlign="center"
+      attached="bottom"
+    >
+      2020  © GoHOME's
+    </Segment>
+  )
+}
