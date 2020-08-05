@@ -6,7 +6,7 @@ import { logoutHandler } from "../../../services/sessionHandlers/authService";
 import {getNames} from "../../../services/userInfo"
 
 export function Avatar(){
-  const {user, dispatch} = useContext(UserContext)
+  const { dispatch } = useContext(UserContext)
 
   const logout = () => {
     const token = localStorage.getItem('token');
