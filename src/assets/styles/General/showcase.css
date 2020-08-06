@@ -1,12 +1,42 @@
 .filter-center{
     text-align: center;
     padding: 0.7rem;
+    margin: 0.3rem;
   }
 .ui.dropdown.dropdown-selective{
   background-color: var(--mainWhite);
   color:var(--mainGrey);
   border-color: var(--mainGrey);
   border-width: 0.3rem;
+  margin: 0.3rem;
+}
+.ui.dropdown.dropdown-selective:hover{
+ border-color: var(--primaryColor);
+ color: var(--mainBlack);
+}
+/* Price */
+.ui.button.floating.labeled.dropdown.icon{
+  background-color: var(--mainGrey);
+  margin: 0.3rem;
+  box-sizing: border-box;
+  color: var(--mainWhite);
+}
+.ui.container.price-section{
+  color: black;
+  padding: 0.8rem;
+  box-sizing: border-box;
+  background-color: var(--mainWhite);
+}
+.ui.button.make-filter-price-button{
+  margin: 0.5rem;
+  background-color: var(--mainGrey);
+  box-sizing: border-box;
+  color: var(--mainWhite);
+}
+.bar-make-filter-price-button{
+  background-color: var(--primaryColor);
+  padding: 0.2rem;
+  margin-top: 0.2rem;
 }
 
 
