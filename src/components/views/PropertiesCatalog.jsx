@@ -5,13 +5,18 @@ import ShowCase from '../smart/showcase/ShowCase'
 import PropertiesController from "../../controllers/PropertiesController";
 import {NoResultsMessage} from "../smart/Properties/NoResultsMessage"
 import Paginator from "../smart/Pagination/Paginator";
-import {getTotalPages} from "../../services/PaginationService";
+import {getCurrentPageByQuery, getTotalPages} from "../../services/pagination/PaginationService";
+import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
 
-export default function PropertiesCatalog(props){
-  const [page, setPage] = useState(1);
+function PropertiesCatalog(props){
+  const queryPage = getCurrentPageByQuery(props.location.search);
+  const [page, setPage] = useState( queryPage || 1);
   const [totalPages, setTotalPages] = useState(1);
   const [properties, setProperties] = useState([]);
   
+  const history = useHistory();
+
   React.useEffect(() => {
     PropertiesController.index(page)
       .then(res => {
@@ -25,6 +30,9 @@ export default function PropertiesCatalog(props){
 
   const handleChange = (event, data) => {
     setPage(data.activePage)
+    history.push({
+      search: `?page=${data.activePage}`
+    })
   }
 
   const updateTotalPages = (total_items, per_page) => {
@@ -42,8 +50,7 @@ export default function PropertiesCatalog(props){
     <>
       <ShowCase/>
       <Grid stackable columns={3} padded>
-        <Paginator {...PaginatorProps}
-        />
+        <Paginator {...PaginatorProps}/>
         { 
           properties.length !== 0
           ? <PropertiesList properties={properties}/>
@@ -54,3 +61,5 @@ export default function PropertiesCatalog(props){
     </>
   )
 }
+
+export default withRouter(PropertiesCatalog);
