@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import "../../../assets/styles/General/divs.css";
-import AppopinmentsController from "../../../controllers/AppoinmentsControllers";
 
 export default function AppopinmentButton(props){
   const {address, price} = props

@@ -1,5 +1,5 @@
 import React from "react"
-import { Grid, Header } from "semantic-ui-react"
+import { Header } from "semantic-ui-react"
 
 export function NoResultsMessage(props){
   return(

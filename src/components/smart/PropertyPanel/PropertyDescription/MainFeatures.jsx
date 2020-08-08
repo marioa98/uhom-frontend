@@ -1,5 +1,5 @@
 import React from "react";
-import {Header, List, Segment, Table} from "semantic-ui-react"
+import {Header, Segment, Table} from "semantic-ui-react"
 
 export default function MainFeatures(props){
   const {bedrooms, bathrooms, square_meters} = props.features

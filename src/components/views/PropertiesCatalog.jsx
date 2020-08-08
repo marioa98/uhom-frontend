@@ -38,7 +38,7 @@ function PropertiesCatalog(props){
 
   const updateTotalPages = (total_items, per_page) => {
     const total = getTotalPages(total_items, per_page)
-    if(total != totalPages) setTotalPages(total);
+    if(total !== totalPages) setTotalPages(total);
   }
 
   const paginationProps = {

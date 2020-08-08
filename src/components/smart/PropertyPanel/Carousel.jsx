@@ -6,7 +6,6 @@ import axios from "axios";
 
 export default function PropertyCarousel(props){
   const {images} = props
-  const tmp_images = [1,2,3,4,5]
 
   return(
     <Grid.Column width={9}>
