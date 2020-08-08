@@ -1,17 +1,16 @@
 import React, {useState} from "react";
-import { Grid, Header, Pagination } from "semantic-ui-react";
+import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
+
 import PropertiesList from "../smart/Properties/PropertiesList";
 import ShowCase from '../smart/showcase/ShowCase'
 import PropertiesController from "../../controllers/PropertiesController";
 import {NoResultsMessage} from "../smart/Properties/NoResultsMessage"
-import Paginator from "../smart/Pagination/Paginator";
-import {getCurrentPageByQuery, getTotalPages} from "../../services/pagination/PaginationService";
-import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
-import { useHistory } from "react-router-dom";
+import {getCurrentPageByQuery, getTotalPages, getValidPage} from "../../services/pagination/PaginationService";
 
 function PropertiesCatalog(props){
   const queryPage = getCurrentPageByQuery(props.location.search);
-  const [page, setPage] = useState( queryPage || 1);
+  const [page, setPage] = useState( getValidPage(queryPage) );
   const [totalPages, setTotalPages] = useState(1);
   const [properties, setProperties] = useState([]);
   
@@ -29,9 +28,11 @@ function PropertiesCatalog(props){
   }, [page])
 
   const handleChange = (event, data) => {
-    setPage(data.activePage)
+    const currentPage = data.activePage
+
+    setPage(currentPage)
     history.push({
-      search: `?page=${data.activePage}`
+      search: `?page=${currentPage}`
     })
   }
 
@@ -40,7 +41,7 @@ function PropertiesCatalog(props){
     if(total != totalPages) setTotalPages(total);
   }
 
-  const PaginatorProps = {
+  const paginationProps = {
     totalPages: totalPages,
     currentPage: page,
     handleChange: handleChange
@@ -49,15 +50,11 @@ function PropertiesCatalog(props){
   return(
     <>
       <ShowCase/>
-      <Grid stackable columns={3} padded>
-        <Paginator {...PaginatorProps}/>
-        { 
-          properties.length !== 0
-          ? <PropertiesList properties={properties}/>
-          : <NoResultsMessage/>
-        }
-        <Paginator {...PaginatorProps}/>
-      </Grid>
+      { 
+        properties.length !== 0
+        ? <PropertiesList properties={properties} paginationProps={paginationProps}/>
+        : <NoResultsMessage/>
+      }
     </>
   )
 }
