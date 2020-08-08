@@ -2,12 +2,16 @@ import React from "react";
 import axios from "axios"
 import { Card, Grid, Image } from "semantic-ui-react";
 import "../../../assets/styles/General/cards.css"
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function PropertyCard(props){
   const {uuid, images,address, price, location, bathrooms, bedrooms, square_meters} 
     = props.property_info
   const {city, state} = location
-  
+
+  const history = useHistory();
+  const goTo = path => history.push(path)
+
   const imgUri = `${axios.defaults.baseURL}${images[0]}`
   return(
     <Grid.Column style={{paddingTop: "16px"}}>
@@ -33,7 +37,7 @@ export default function PropertyCard(props){
           </Card.Description>
         </Card.Content>
         <Card.Content extra textAlign="center">
-          <a>
+          <a onClick={() => goTo(`/property/${uuid}`)}>
             Ver más...
           </a>
         </Card.Content>

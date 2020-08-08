@@ -7,7 +7,7 @@ import axios from "axios";
 
 
 import { BrowserRouter } from "react-router-dom";
-axios.defaults.baseURL="http://localhost:4000"
+axios.defaults.baseURL="https://gohomes-api.herokuapp.com"
 
 ReactDOM.render(
   <React.StrictMode>

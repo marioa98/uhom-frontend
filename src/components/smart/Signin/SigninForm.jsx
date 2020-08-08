@@ -33,7 +33,7 @@ export function SigninForm(){
           }
           loginHandler(loginData, dispatch);
         }
-      })
+      }).catch(err => console.log(err))
   }
 
   return(
