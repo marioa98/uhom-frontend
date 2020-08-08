@@ -5,7 +5,6 @@ import {Button, Form} from 'semantic-ui-react';
 
 import { loginValidations } from "../../../services/validations/validationSchemas"
 import loginHandler from "../../../services/sessionHandlers/authService";
-import {disableButton} from "../../../services/validations/submitValidationHelper";
 import { UserContext } from "../../../App";
 
 import "../../../assets/styles/General/forms.css";
@@ -51,7 +50,7 @@ export function LoginForm(){
       </Form.Field>
       
       <div className="fluid">
-        <Button className="btn-login" type="submit" disabled={disableButton(errors)}>
+        <Button className="btn-login" type="submit">
           Iniciar Sesión
         </Button>
       </div>
