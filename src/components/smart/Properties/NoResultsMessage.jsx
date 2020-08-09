@@ -2,9 +2,10 @@ import React from "react"
 import { Header } from "semantic-ui-react"
 
 export function NoResultsMessage(props){
+  const {message} = props
   return(
     <Header as="h3" textAlign="center">
-      No se encuentraron propiedades con las características especificadas.
+      {message}
     </Header>
   )
 }

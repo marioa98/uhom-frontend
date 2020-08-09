@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers";
-import {Button, Form} from 'semantic-ui-react';
+import {Button, Form, Message} from 'semantic-ui-react';
 
 import { loginValidations } from "../../../services/validations/validationSchemas"
 import loginHandler from "../../../services/sessionHandlers/authService";
@@ -13,17 +13,24 @@ import "../../../assets/styles/General/errors.css"
 
 export function LoginForm(){
   const { dispatch } = React.useContext(UserContext);
-  const {register, handleSubmit, errors} = useForm({
+  const {register, handleSubmit, errors, setError} = useForm({
     resolver: yupResolver(loginValidations)
   })
 
-  const submit = (data, event) => {
+  const submit = async (data, event) => {
     event.preventDefault();
-    loginHandler(data, dispatch);
+    const response = await loginHandler(data, dispatch)
+    if(response.status === 401) await setError("invalidKeys", {
+      type: "serverResponse",
+      message: "La combinación de email y contraseña es incorrecta"
+    })
   }
 
   return(
     <Form className="large basic-form" onSubmit={handleSubmit(submit)}>
+      {
+        errors.invalidKeys && <p className="dark-error fluid-error">{errors.invalidKeys.message}</p>
+      }
       <Form.Field required>
         <label>Email:</label>
         <div className="ui input">

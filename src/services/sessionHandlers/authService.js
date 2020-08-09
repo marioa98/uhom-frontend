@@ -1,9 +1,7 @@
 import SessionsController from "../../controllers/SessionsController"
 import {setLocalStorage, clearLocalStorage} from "../../services/sessionHandlers/localStorageHandler"
 
-const loginHandler = (data, dispatch) => {
-
-  SessionsController.login(data)
+const loginHandler = (data, dispatch) => SessionsController.login(data)
     .then(res => {
       if(res.status === 200){
         setLocalStorage(res)
@@ -14,8 +12,7 @@ const loginHandler = (data, dispatch) => {
         return res;
       }
     })
-    .catch(err => console.log(err))
-}
+  .catch(err => err.response)
 
 export const logoutHandler = (token, dispatch) => {
   SessionsController.logout(token)
