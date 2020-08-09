@@ -3,28 +3,27 @@ import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom";
 
 import PropertiesList from "../smart/Properties/PropertiesList";
-import ShowCase from '../smart/showcase/ShowCase'
-import PropertiesController from "../../controllers/PropertiesController";
-import {NoResultsMessage} from "../smart/Properties/NoResultsMessage"
+import ShowCase from '../smart/showcase/ShowCase';
+import {NoResultsMessage} from "../smart/Properties/NoResultsMessage";
 import {getCurrentPageByQuery, getTotalPages, getValidPage} from "../../services/pagination/PaginationService";
+import { propertyList } from "../../services/PropertiesService";
 
 function PropertiesCatalog(props){
+
   const queryPage = getCurrentPageByQuery(props.location.search);
   const [page, setPage] = useState( getValidPage(queryPage) );
   const [totalPages, setTotalPages] = useState(1);
   const [properties, setProperties] = useState([]);
+  const noResultsMessage = "No se encuentraron propiedades con las características especificadas."
   
   const history = useHistory();
-
+  
   React.useEffect(() => {
-    PropertiesController.index(page)
-      .then(res => {
-        if(res.status === 200){
-          setProperties(res.data)
-          updateTotalPages(res.headers['total'], res.headers['per-page'])
-        }
-      })
-      .catch(err => console.log(err))
+    (async () => {
+      const results = await propertyList(`/properties?page=${page}`);
+      setProperties(results.data);
+      updateTotalPages(results.totalPages, results.itemsPerPage)
+    })();
   }, [page])
 
   const handleChange = (event, data) => {
@@ -53,7 +52,7 @@ function PropertiesCatalog(props){
       { 
         properties.length !== 0
         ? <PropertiesList properties={properties} paginationProps={paginationProps}/>
-        : <NoResultsMessage/>
+        : <NoResultsMessage message={noResultsMessage}/>
       }
     </>
   )

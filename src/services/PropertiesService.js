@@ -1,11 +1,18 @@
 import PropertiesController from "../controllers/PropertiesController";
 
-export const PropertiesShowcaseHandler = page => {
-  PropertiesController.index(page)
+export const propertyList = path => {
+  const response = PropertiesController.index(path)
     .then(res => {
       if(res.status === 200){
-        return res.data;
+        return {
+          data: res.data,
+          totalPages: res.headers['total'],
+          itemsPerPage: res.headers['per-page']
+        }
       }
+      return res.data
     })
-    .catch(err => console.log(err));
+    .catch(err => ({error: err}));
+  
+  return response;
 }
