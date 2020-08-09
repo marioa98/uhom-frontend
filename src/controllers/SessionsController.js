@@ -2,7 +2,7 @@ import axios from "axios"
 
 export default class SessionsController{
   static login(data){
-    return axios.post(`${axios.defaults.baseURL}/login`, {user: {...data}})
+    return axios.post(`/login`, {user: {...data}})
   }
 
   static logout(token){
@@ -11,6 +11,6 @@ export default class SessionsController{
         'Authorization': token
       }
     }
-    return axios.delete(`${axios.defaults.baseURL}/logout`, headers)
+    return axios.delete(`/logout`, headers)
   }
 }

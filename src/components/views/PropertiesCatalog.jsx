@@ -1,46 +1,46 @@
 import React, {useState} from "react";
-import { Grid, Header, Pagination } from "semantic-ui-react";
-import PropertiesList from "../smart/Properties/PropertiesList";
-import ShowCase from '../smart/showcase/ShowCase'
-import PropertiesController from "../../controllers/PropertiesController";
-import {NoResultsMessage} from "../smart/Properties/NoResultsMessage"
-import Paginator from "../smart/Pagination/Paginator";
-import {getCurrentPageByQuery, getTotalPages} from "../../services/pagination/PaginationService";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom";
 
+import PropertiesList from "../smart/Properties/PropertiesList";
+import ShowCase from '../smart/showcase/ShowCase';
+import {NoResultsMessage} from "../smart/Properties/NoResultsMessage";
+import {getCurrentPageByQuery, getTotalPages, getValidPage} from "../../services/pagination/PaginationService";
+import { propertyList } from "../../services/PropertiesService";
+
 function PropertiesCatalog(props){
+
   const queryPage = getCurrentPageByQuery(props.location.search);
-  const [page, setPage] = useState( queryPage || 1);
+  const [page, setPage] = useState( getValidPage(queryPage) );
   const [totalPages, setTotalPages] = useState(1);
   const [properties, setProperties] = useState([]);
+  const noResultsMessage = "No se encuentraron propiedades con las características especificadas."
   
   const history = useHistory();
-
+  
   React.useEffect(() => {
-    PropertiesController.index(page)
-      .then(res => {
-        if(res.status === 200){
-          setProperties(res.data)
-          updateTotalPages(res.headers['total'], res.headers['per-page'])
-        }
-      })
-      .catch(err => console.log(err))
+    (async () => {
+      const results = await propertyList(`/properties?page=${page}`);
+      setProperties(results.data);
+      updateTotalPages(results.totalPages, results.itemsPerPage)
+    })();
   }, [page])
 
   const handleChange = (event, data) => {
-    setPage(data.activePage)
+    const currentPage = data.activePage
+
+    setPage(currentPage)
     history.push({
-      search: `?page=${data.activePage}`
+      search: `?page=${currentPage}`
     })
   }
 
   const updateTotalPages = (total_items, per_page) => {
     const total = getTotalPages(total_items, per_page)
-    if(total != totalPages) setTotalPages(total);
+    if(total !== totalPages) setTotalPages(total);
   }
 
-  const PaginatorProps = {
+  const paginationProps = {
     totalPages: totalPages,
     currentPage: page,
     handleChange: handleChange
@@ -49,15 +49,11 @@ function PropertiesCatalog(props){
   return(
     <>
       <ShowCase/>
-      <Grid stackable columns={3} padded>
-        <Paginator {...PaginatorProps}/>
-        { 
-          properties.length !== 0
-          ? <PropertiesList properties={properties}/>
-          : <NoResultsMessage/>
-        }
-        <Paginator {...PaginatorProps}/>
-      </Grid>
+      { 
+        properties.length !== 0
+        ? <PropertiesList properties={properties} paginationProps={paginationProps}/>
+        : <NoResultsMessage message={noResultsMessage}/>
+      }
     </>
   )
 }

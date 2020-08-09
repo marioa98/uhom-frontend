@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {useParams} from "react-router-dom"
 import { Redirect, withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import PropertiesController from "../../controllers/PropertiesController";
@@ -35,12 +35,12 @@ function PropertyPanel(props){
         setProperty(res.data)
       }
     })
-  }, [])
+  }, [property_uuid])
   
   return(
     <>
       {
-        property_uuid
+        property
         ? <Panel propertyInfo={property}
             propertyLocation={property.location}
           />

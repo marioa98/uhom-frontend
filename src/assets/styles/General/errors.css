@@ -2,13 +2,15 @@
   color: var(--mainWhite);
   font-size: 1rem;
   color: var(--error);
-  border: var(--errorBackground) 0.1rem solid;
+  border: var(--errorBackground) 0.3rem solid;
   background-color: var(--errorBackground);
-  padding-left: 0.5rem;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
+  padding: 0.25rem 0.5rem;
   border-radius: 0.3rem;
   margin-top: 0.5rem;
+}
+
+.fluid-error{
+  padding: 0.5rem 1rem;
 }
 
 .ui.input.input-error{

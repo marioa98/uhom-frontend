@@ -21,3 +21,19 @@ export const loginValidations = Yup.object().shape({
   email: yupRequiredString,
   password: yupRequiredString
 })
+
+export const validationsAfterSubmit = (errors) => {
+  const response = []
+
+  for(const errorKey in errors){
+    const error = {
+      type: "serverResponse",
+      name: errorKey,
+      message: `⚠ ${errors[`${errorKey}`]}`
+    }
+
+    response.push(error);
+  }
+
+  return response
+}

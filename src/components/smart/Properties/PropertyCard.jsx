@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios"
-import { Card, Grid, Image } from "semantic-ui-react";
+import { Card, Grid } from "semantic-ui-react";
 import "../../../assets/styles/General/cards.css"
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function PropertyCard(props){
   const {uuid, images,address, price, location, bathrooms, bedrooms, square_meters} 
@@ -37,9 +37,9 @@ export default function PropertyCard(props){
           </Card.Description>
         </Card.Content>
         <Card.Content extra textAlign="center">
-          <a onClick={() => goTo(`/property/${uuid}`)}>
+          <Link onClick={() => goTo(`/property/${uuid}`)}>
             Ver más...
-          </a>
+          </Link>
         </Card.Content>
       </Card>
     </Grid.Column>
