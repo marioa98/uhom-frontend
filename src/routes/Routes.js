@@ -6,6 +6,7 @@ import PropertiesCatalog from "../components/views/PropertiesCatalog";
 import Login from "../components/views/Login";
 import Signin from "../components/views/Signin"
 import PropertyPanel from "../components/views/PropertyPanel";
+import UserProfile from "../components/views/UserProfile";
 
 function Routes() {
     return (
@@ -16,6 +17,7 @@ function Routes() {
           <Route exact path="/property/:property_uuid" component={PropertyPanel}/>
           <Route exact path="/login" component={Login}/>
           <Route exact path="/signin" component={Signin}/>
+          <Route exact path="/user/:user_uuid/:section" component={UserProfile}/>
           <Route component={Error} />
         </Switch>
       </div>
