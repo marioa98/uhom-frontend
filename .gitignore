@@ -2,6 +2,7 @@
 
 # preferences
 .vscode
+cypress/*/examples
 
 # dependencies
 /node_modules

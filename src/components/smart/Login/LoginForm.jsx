@@ -35,6 +35,7 @@ export function LoginForm(){
         <div className="ui input">
           <input
             name="email"
+            type="email"
             placeholder="Email"
             ref={register}
           />
