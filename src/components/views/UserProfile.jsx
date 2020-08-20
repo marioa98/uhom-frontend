@@ -1,5 +1,8 @@
 import React, { useContext, useState } from "react";
-import { useHistory, useParams, withRouter } from "react-router-dom";
+import { Redirect, useHistory, useParams, withRouter } from "react-router-dom";
+import { UserContext } from "../../App";
+import { useUserInfo } from "../../services/userInfo";
+import { useUserContext } from "../../UserContext";
 import ProfileHeader from "../smart/UserProfile.jsx/ProfileHeader";
 import { ProfileOptions } from "../smart/UserProfile.jsx/ProfileOptions";
 
@@ -10,7 +13,9 @@ function getCurrentIndex(section){
   }
 }
 
-function UserProfile(props){
+function UserProfile(){
+  const { isLogged } = useUserContext();
+  const user = useUserInfo()
   const { user_uuid, section } = useParams();
   const history = useHistory();
   const [ activeIndex, setActiveIndex ] = useState(getCurrentIndex(section));
@@ -21,17 +26,24 @@ function UserProfile(props){
     
     if(newIndex !== activeIndex){
       setActiveIndex(newIndex);
-      history.push(`/user/${user_uuid}/${newSection}`)
+      history.replace(`/user/${user_uuid}/${newSection}`)
     }
   }
 
   return(
     <>
-      <ProfileHeader/>
-      <ProfileOptions
-        activeIndex={activeIndex}
-        handleSectionChange={handleSectionChange}
-      />
+      {
+        isLogged && user.uuid === user_uuid ?
+          <div>
+            <ProfileHeader/>
+            <ProfileOptions
+              activeIndex={activeIndex}
+              handleSectionChange={handleSectionChange}
+            />
+          </div>
+
+          : <Redirect to="/"/>
+      }
     </>
   )
 }

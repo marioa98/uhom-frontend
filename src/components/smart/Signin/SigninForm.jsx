@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers";
 import { signupValidations, validationsAfterSubmit } from "../../../services/validations/validationSchemas"
@@ -8,10 +8,10 @@ import Cleave from "cleave.js/react";
 
 import UsersController from "../../../controllers/UsersController";
 import loginHandler from "../../../services/sessionHandlers/authService"
-import { UserContext } from "../../../App";
 
 import "../../../assets/styles/General/divs.css";
 import "../../../assets/styles/General/errors.css";
+import { useUserDispatch } from "../../../UserContext";
 
 export function SigninForm(){
   
@@ -19,7 +19,7 @@ export function SigninForm(){
     resolver: yupResolver(signupValidations)
   });
 
-  const { dispatch } = useContext(UserContext);
+  const dispatch = useUserDispatch();
 
   const submit = (data, event) => {
     event.preventDefault();

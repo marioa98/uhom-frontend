@@ -1,18 +1,18 @@
 import React from 'react';
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers";
-import {Button, Form, Message} from 'semantic-ui-react';
+import {Button, Form } from 'semantic-ui-react';
 
 import { loginValidations } from "../../../services/validations/validationSchemas"
 import loginHandler from "../../../services/sessionHandlers/authService";
-import { UserContext } from "../../../App";
 
 import "../../../assets/styles/General/forms.css";
 import "../../../assets/styles/General/divs.css";
 import "../../../assets/styles/General/errors.css";
+import { useUserDispatch } from '../../../UserContext';
 
 export function LoginForm(){
-  const { dispatch } = React.useContext(UserContext);
+  const dispatch = useUserDispatch();
   const {register, handleSubmit, errors, setError} = useForm({
     resolver: yupResolver(loginValidations)
   })

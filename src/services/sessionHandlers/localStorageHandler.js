@@ -1,7 +1,7 @@
 export const setLocalStorage = (res) => {
-  const user = JSON.stringify(res.data)
-  const token = res.headers.authorization
-  localStorage.setItem("user", user)
+  const user = res.data
+  const token = res.headers.authorization  
+  localStorage.setItem("user", JSON.stringify(user))
   localStorage.setItem("token", token)
 }
 

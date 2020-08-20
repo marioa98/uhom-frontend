@@ -1,16 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link, Redirect, withRouter} from 'react-router-dom';
 import "../../assets/styles/General/backgrounds.css"
 import "../../assets/styles/General/callouts.css"
 import { SigninForm } from '../smart/Signin/SigninForm';
-import { UserContext } from "../../App"
+import { useUserContext } from '../../UserContext';
 
 function Signin(){
-  const {user} = useContext(UserContext);
+  const { isLogged } = useUserContext();
   return(
     <>
       {
-        user.isLogged
+        isLogged
         ? <Redirect to="/properties"/>
         : <div className="dark-bg-solid">
             <h3>Registrate con nosotros</h3>

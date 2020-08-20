@@ -3,7 +3,7 @@ import {setLocalStorage, clearLocalStorage} from "../../services/sessionHandlers
 
 const loginHandler = (data, dispatch) => SessionsController.login(data)
     .then(res => {
-      if(res.status == 200){
+      if(res.status === 200){
         setLocalStorage(res)
         dispatch({
           type: 'LOGIN',
