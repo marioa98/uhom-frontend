@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import "../../assets/styles/General/backgrounds.css"
 import {LoginForm} from "../smart/Login/LoginForm";
 import { Link, Redirect, withRouter} from 'react-router-dom';
-import { UserContext } from "../../App"
+import { UserContext } from "../../App";
 
 function Login(){
 

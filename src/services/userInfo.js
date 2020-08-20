@@ -1,4 +1,9 @@
+const user = JSON.parse(localStorage.getItem('user'))
+
 export const getNames = () => {
-  const user = JSON.parse(localStorage.getItem('user'))
   return user.names
+}
+
+export const getSurnames = () => {
+  return user.surnames
 }

@@ -1,17 +1,25 @@
 import React, { useContext } from "react"
 import { Dropdown} from "semantic-ui-react";
 import "../../../assets/styles/General/icons.css"
-import {UserContext} from "../../../App"
+import {UserContext} from "../../../App";
 import { logoutHandler } from "../../../services/sessionHandlers/authService";
 import {getNames} from "../../../services/userInfo"
+import {useHistory} from "react-router-dom"
 
 export function Avatar(){
-  const { dispatch } = useContext(UserContext)
+  const { user, dispatch } = useContext(UserContext)
+  const history = useHistory();
+
 
   const logout = () => {
     const token = localStorage.getItem('token');
     logoutHandler(token, dispatch);
   }
+
+  const goTo = section => {
+    history.replace(`/user/${user.user.uuid}/${section}`)
+  }
+
   
   return(
     <div>
@@ -26,8 +34,8 @@ export function Avatar(){
 
           <Dropdown.Divider />
           
-          <Dropdown.Item icon='user' text='Mi Perfil' />
-          <Dropdown.Item icon='heart' text='Mis Casas' />
+          <Dropdown.Item icon='user' text='Mi Perfil' onClick={() => goTo('my-profile')}/>
+          <Dropdown.Item icon='heart' text='Mis Casas' onClick={() => goTo('my-likes')}/>
           
           <Dropdown.Divider />
           

@@ -9,7 +9,7 @@ import { UserContext } from "../../../App";
 
 import "../../../assets/styles/General/forms.css";
 import "../../../assets/styles/General/divs.css";
-import "../../../assets/styles/General/errors.css"
+import "../../../assets/styles/General/errors.css";
 
 export function LoginForm(){
   const { dispatch } = React.useContext(UserContext);
@@ -18,9 +18,8 @@ export function LoginForm(){
   })
 
   const submit = async (data, event) => {
-    event.preventDefault();
     const response = await loginHandler(data, dispatch)
-    if(response.status === 401) await setError("invalidKeys", {
+    if( response && response.status === 401) await setError("invalidKeys", {
       type: "serverResponse",
       message: "La combinación de email y contraseña es incorrecta"
     })
