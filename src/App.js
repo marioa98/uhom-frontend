@@ -5,6 +5,7 @@ import Navbar from "./components/smart/Navbar/Navbar";
 import Routes from './routes/Routes'
 import usersReducer from "./reducers/usersReducers"
 import Footer from './components/dumb/Footer'
+import { BrowserRouter } from "react-router-dom";
 
 export const UserContext = React.createContext();
 const initialUser = {
@@ -34,11 +35,13 @@ function App() {
   }, []);
 
   return (
-    <UserContext.Provider value={{user, dispatch}}>
-      <Navbar />
-      <Routes/>
-      <Footer/>
-    </UserContext.Provider>
+    <BrowserRouter>
+      <UserContext.Provider value={{user, dispatch}}>
+        <Navbar />
+        <Routes/>
+        <Footer/>
+      </UserContext.Provider>
+    </BrowserRouter>
   );
 }
 

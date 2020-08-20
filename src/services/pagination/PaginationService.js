@@ -8,7 +8,5 @@ export const getCurrentPageByQuery = queryPage => {
   return pageHash.page;
 }
 
-export const getValidPage = currentPage => {
-  const regex = /[1-9]/g
-  return regex.test(currentPage) ? currentPage : 1;
-}
+export const getValidPage = currentPage =>
+  Number.isInteger(currentPage) ? currentPage : 1;
