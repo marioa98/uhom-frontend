@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Menu, Tab } from "semantic-ui-react";
+import React from "react";
+import { Tab } from "semantic-ui-react";
 
 export function ProfileOptions(props){
   const { activeIndex, handleSectionChange } = props

@@ -1,10 +1,10 @@
 import React from "react";
 import { Image, Segment } from "semantic-ui-react";
-import { getNames, getSurnames } from "../../../services/userInfo"
 
 import "../../../assets/styles/General/segments.css"
 
 export default function ProfileHeader(props){
+  const { user } = props
 
   return(
     <Segment 
@@ -21,7 +21,7 @@ export default function ProfileHeader(props){
         verticalAlign="middle"
       />
       <h3>
-        {`${getNames()} ${getSurnames()}`}
+        {`${user.names} ${user.surnames}`}
       </h3>
     </Segment>
   )

@@ -1,6 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Redirect, useHistory, useParams, withRouter } from "react-router-dom";
-import { UserContext } from "../../App";
 import { useUserInfo } from "../../services/userInfo";
 import { useUserContext } from "../../UserContext";
 import ProfileHeader from "../smart/UserProfile.jsx/ProfileHeader";
@@ -35,7 +34,7 @@ function UserProfile(){
       {
         isLogged && user.uuid === user_uuid ?
           <div>
-            <ProfileHeader/>
+            <ProfileHeader user={user}/>
             <ProfileOptions
               activeIndex={activeIndex}
               handleSectionChange={handleSectionChange}

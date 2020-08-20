@@ -1,10 +1,10 @@
-import React, { useContext } from "react"
+import React from "react"
 import { Dropdown} from "semantic-ui-react";
 import { useHistory } from "react-router-dom"
 import "../../../assets/styles/General/icons.css"
 import { logoutHandler } from "../../../services/sessionHandlers/authService";
-import {getNames, useUserInfo} from "../../../services/userInfo"
-import { useUserContext, useUserDispatch } from "../../../UserContext";
+import { useUserInfo } from "../../../services/userInfo"
+import { useUserDispatch } from "../../../UserContext";
 
 export function Avatar(){
   const user = useUserInfo();
