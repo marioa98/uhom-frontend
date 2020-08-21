@@ -8,6 +8,7 @@ import { useUserContext } from "../../UserContext";
 
 const Home = () => {
   const { isLogged } = useUserContext();
+
   const user = useUserInfo();
 
   const subtitle = () => isLogged 

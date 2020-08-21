@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import usersReducer from "./reducers/usersReducers";
+import { refreshSession } from "./services/sessionHandlers/localStorageHandler";
 
 const UserContext = React.createContext();
 const UserContextDispatch = React.createContext();
@@ -15,21 +16,7 @@ export function UserContextProvider({children}){
   const [user, dispatch] = React.useReducer(usersReducer, initialUser);
   
   useEffect(() => {
-    
-    const currentUser = localStorage.getItem('user') || null
-    const token = localStorage.getItem('token') || null
-    
-    if(currentUser && token){
-      dispatch({
-        type: 'LOGIN',
-        payload: {
-          headers: {
-            authorization: token
-          },
-          data: currentUser
-        }
-      })
-    }
+    refreshSession(dispatch);
   }, []);
   
   return(
@@ -44,8 +31,8 @@ export function UserContextProvider({children}){
 
 export function useUserContext(){
   const context = React.useContext(UserContext);
-
   if(context === undefined) throw new Error('useUserContext debe de usarse con UserContextProvider')
+  
   return context;
 }
 

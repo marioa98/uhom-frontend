@@ -5,4 +5,22 @@ export const setLocalStorage = (res) => {
   localStorage.setItem("token", token)
 }
 
+export function refreshSession(dispatch){
+  
+  const currentUser = localStorage.getItem('user') || null
+  const token = localStorage.getItem('token') || null
+  
+  if(currentUser && token){
+    dispatch({
+      type: 'LOGIN',
+      payload: {
+        headers: {
+          authorization: token
+        },
+        data: currentUser
+      }
+    })
+  }
+}
+
 export const clearLocalStorage = () => localStorage.clear();
