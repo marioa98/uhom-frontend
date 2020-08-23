@@ -10,6 +10,8 @@ describe("setLocalStorage()", () => {
   beforeAll(() => {
     setLocalStorage(res);
   })
+
+  afterAll(() => clearLocalStorage())
   
   test("set user data correctly", () => {
     const localStorageUser = JSON.parse(getFromLocalStorage('user'));
