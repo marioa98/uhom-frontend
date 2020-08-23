@@ -3,21 +3,20 @@ import { Dropdown} from "semantic-ui-react";
 import { useHistory } from "react-router-dom"
 import "../../../assets/styles/General/icons.css"
 import { logoutHandler } from "../../../services/sessionHandlers/authService";
-import { useUserInfo } from "../../../services/userInfo"
+import { useSessionInfo } from "../../../services/sessionInfo"
 import { useUserDispatch } from "../../../UserContext";
 
 export function Avatar(){
-  const user = useUserInfo();
+  const session = useSessionInfo();
   const dispatch = useUserDispatch();
   const history = useHistory();
 
   const logout = () => {
-    const token = localStorage.getItem('token');
-    logoutHandler(token, dispatch);
+    logoutHandler(session.authorization, dispatch);
   }
 
   const goTo = section => {
-    history.replace(`/user/${user.uuid}/${section}`)
+    history.replace(`/user/${session.id}/${section}`)
   }
 
   
@@ -30,7 +29,7 @@ export function Avatar(){
         icon={{name: 'user circle', color: "blue", size: "big"}}
       > 
         <Dropdown.Menu>
-          <Dropdown.Header content={`¡Hola, ${ user.names }! `}/>
+          <Dropdown.Header content={`¡Hola, ${ session.names }! `}/>
 
           <Dropdown.Divider />
           

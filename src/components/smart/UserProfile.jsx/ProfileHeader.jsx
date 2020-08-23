@@ -4,7 +4,7 @@ import { Image, Segment } from "semantic-ui-react";
 import "../../../assets/styles/General/segments.css"
 
 export default function ProfileHeader(props){
-  const { user } = props
+  const { header } = props
 
   return(
     <Segment 
@@ -21,7 +21,7 @@ export default function ProfileHeader(props){
         verticalAlign="middle"
       />
       <h3>
-        {`${user.names} ${user.surnames}`}
+        {header}
       </h3>
     </Segment>
   )

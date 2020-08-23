@@ -2,17 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Hero from "../dumb/Hero";
 import Banner from "../dumb/Banner";
-import { useUserInfo } from "../../services/userInfo";
+import { useSessionInfo } from "../../services/sessionInfo";
 import { useUserContext } from "../../UserContext";
 
 
 const Home = () => {
   const { isLogged } = useUserContext();
 
-  const user = useUserInfo();
+  const session = useSessionInfo();
 
   const subtitle = () => isLogged 
-    ? `Bienvenido ${ user.names }.`
+    ? `Bienvenido ${ session.names }.`
     : "Reserva tu visita gratuitamente."
   
 

@@ -1,5 +1,5 @@
 import SessionsController from "../../controllers/SessionsController"
-import {setLocalStorage, clearLocalStorage} from "../../services/sessionHandlers/localStorageHandler"
+import {setLocalStorage, clearLocalStorage, setSessionItem} from "../../services/sessionHandlers/localStorageHandler"
 
 const loginHandler = (data, dispatch) => SessionsController.login(data)
     .then(res => {
@@ -7,7 +7,9 @@ const loginHandler = (data, dispatch) => SessionsController.login(data)
         setLocalStorage(res)
         dispatch({
           type: 'LOGIN',
-          payload: res
+          payload: {
+            sessionInfo: setSessionItem(res.data, res.headers.authorization)
+          }
         })
         return res;
       }

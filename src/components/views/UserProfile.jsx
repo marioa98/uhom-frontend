@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Redirect, useHistory, useParams, withRouter } from "react-router-dom";
-import { useUserInfo } from "../../services/userInfo";
-import { useUserContext } from "../../UserContext";
+import { useSessionInfo } from "../../services/sessionInfo";
 import ProfileHeader from "../smart/UserProfile.jsx/ProfileHeader";
 import { ProfileOptions } from "../smart/UserProfile.jsx/ProfileOptions";
 
@@ -13,8 +12,7 @@ function getCurrentIndex(section){
 }
 
 function UserProfile(){
-  const { isLogged } = useUserContext();
-  const user = useUserInfo()
+  const session = useSessionInfo()
   const { user_uuid, section } = useParams();
   const history = useHistory();
   const [ activeIndex, setActiveIndex ] = useState(getCurrentIndex(section));
@@ -25,16 +23,18 @@ function UserProfile(){
     
     if(newIndex !== activeIndex){
       setActiveIndex(newIndex);
-      history.replace(`/user/${user_uuid}/${newSection}`)
+      history.push(`/user/${session.id}/${newSection}`)
     }
   }
+
+  const isAuthorized = () => session && session.id === user_uuid
 
   return(
     <>
       {
-        isLogged && user.uuid === user_uuid ?
+         isAuthorized() ?
           <div>
-            <ProfileHeader user={user}/>
+            <ProfileHeader header={`${session.names} ${session.surnames}`}/>
             <ProfileOptions
               activeIndex={activeIndex}
               handleSectionChange={handleSectionChange}

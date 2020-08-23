@@ -11,6 +11,10 @@ export function response(){
   }
 }
 
+export function sessionItem(user, token) {
+  
+}
+
 function getUserData(){
   return {
     "uuid": "a54a48d7-1503-440d-a855-f190dceefd60",

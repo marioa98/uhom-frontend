@@ -7,8 +7,7 @@ const UserContextDispatch = React.createContext();
 
 const initialUser = {
   isLogged: false,
-  user: null,
-  token: false
+  sessionInfo: {}
 }
 
 export function UserContextProvider({children}){
