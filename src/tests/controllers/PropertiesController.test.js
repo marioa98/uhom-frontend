@@ -1,6 +1,6 @@
 import axios from "axios";
 import PropertiesController from "../../controllers/PropertiesController";
-import {properties, singleProperty} from './defaults/propertyDefaults'
+import {properties, singleProperty} from '../__mocks__/defaults/propertyDefaults'
 jest.mock('axios')
 
 describe('index() method', () => {
