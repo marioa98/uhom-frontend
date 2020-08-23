@@ -7,11 +7,12 @@ context('Go to login form', () => {
 
   describe('User login', () => {
     it('Valid login', () => {
+      const email = 'johndoe@gmail.com'
       cy.get('.btn-login').click();
 
       cy.get('input[placeholder="Email"]')
-        .type('johndoe@gmail.com')
-        .should('have.value', 'johndoe@gmail.com')
+        .type(email)
+        .should('have.value', email)
       
       cy.get('input[placeholder="Contraseña"]')
         .type('12345678')
@@ -20,7 +21,13 @@ context('Go to login form', () => {
       cy.get('button[type="submit"]')
         .click()
 
-      cy.location('pathname').should('include', 'properties')
+      cy.location('pathname')
+        .should('include', 'properties')
+        .should(() => {
+          const user = JSON.parse(localStorage.getItem('user'))
+          expect(user.email).to.eq(email)
+        })
+
     })
 
     it('Invalid login', () => {
