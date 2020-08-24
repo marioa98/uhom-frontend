@@ -1,5 +1,6 @@
 import React from "react";
 import { Tab } from "semantic-ui-react";
+import ProfileInfo from "./ProfileInfo";
 
 export function ProfileOptions(props){
   const { activeIndex, handleSectionChange } = props
@@ -14,11 +15,13 @@ export function ProfileOptions(props){
       }
     },
     {
-      menuItem: 'Mi Perfil',
+      menuItem: 'Información',
       pane: {
-        key: 'my-profile',
+        key: 'info',
         content:(
-          <Tab.Pane>Mi Perfil</Tab.Pane>
+          <Tab.Pane>
+            <ProfileInfo />
+          </Tab.Pane>
         )
       }
     }

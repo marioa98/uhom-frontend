@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Segment } from "semantic-ui-react";
+import { Header, Image, Segment } from "semantic-ui-react";
 
 import "../../../assets/styles/General/segments.css"
 
@@ -20,9 +20,9 @@ export default function ProfileHeader(props){
         size="small"
         verticalAlign="middle"
       />
-      <h3>
+      <Header as="h1" inverted>
         {header}
-      </h3>
+      </Header>
     </Segment>
   )
 }

@@ -7,8 +7,6 @@ export const setLocalStorage = (res) => {
 export function refreshSession(dispatch){
   
   const sessionInfo = localStorage.getItem('session') || null
-  const currentUser = localStorage.getItem('user') || null
-  const token = localStorage.getItem('token') || null
   
   if(sessionInfo){
     dispatch({
