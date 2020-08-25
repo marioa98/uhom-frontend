@@ -19,7 +19,6 @@ export default function SetUserForm(props){
     iconName,
     submitButtonMessage
   } = props
-
   const { register, handleSubmit, errors, control, setError } = useForm({
     resolver: yupResolver(signupValidations)
   });
@@ -37,7 +36,7 @@ export default function SetUserForm(props){
 
   return(
     <>
-      <Form className={`large ${extraClasses}`} onSubmit={handleSubmit(submitionHandler)}>
+      <Form className={`large ${extraClasses || ''}`} onSubmit={ handleSubmit(submitionHandler)}>
         <Form.Field required>
           <label> Nombre(s): </label>
           <div className="ui input">
@@ -45,7 +44,7 @@ export default function SetUserForm(props){
               name="names"
               placeholder="Nombre(s)"
               ref={register}
-              value={setValue('names')}
+              defaultValue={setValue('names')}
             />
           </div>
           {errors.names && <p className="dark-error">{errors.names.message}</p> }
@@ -58,7 +57,7 @@ export default function SetUserForm(props){
               name="surnames"
               placeholder="Apellido(s)"
               ref={register}
-              value={setValue('surnames')}
+              defaultValue={setValue('surnames')}
             />
           </div>
           {errors.surnames && <p className="dark-error">{errors.surnames.message}</p> }
@@ -73,7 +72,7 @@ export default function SetUserForm(props){
                 type="email"
                 placeholder="Email"
                 ref={register}
-                value={setValue('email')}
+                defaultValue={setValue('email')}
               />
             </div>
             {errors.email && <p className="dark-error">{errors.email.message}</p> }
@@ -141,7 +140,7 @@ export default function SetUserForm(props){
               <>
                 <Divider hidden/>
                 <Button onClick={handleEdition} className="btn-signin" icon>
-                  <Icon name="cancel"/>Cancelar
+                  <Icon name="undo"/> Regresar
                 </Button>
               </>
             : ''
