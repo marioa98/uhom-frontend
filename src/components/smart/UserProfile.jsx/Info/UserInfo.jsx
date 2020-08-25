@@ -1,18 +1,22 @@
 import React from "react";
 import "../../../../assets/styles/General/headers.css"
 import "../../../../assets/styles/General/buttons.css"
-import { Button, Grid, Header, Segment } from "semantic-ui-react";
+import { Button, Grid, Header, Icon, Segment } from "semantic-ui-react";
 
 export default function UserInfo(props){
-  const { user } = props;
-
+  const { user, handleEdition } = props;
   return(
     <div>
       <Segment vertical>
         
         <Grid.Column width={4}>
-          <Button floated="right" className="btn-signin">
-            Editar
+          <Button 
+            floated="right" 
+            className="btn-signin" 
+            icon
+            onClick={handleEdition}
+          >
+            <Icon name="edit" size="large"/> Editar
           </Button>
         </Grid.Column>
 
@@ -47,7 +51,7 @@ export default function UserInfo(props){
               <Grid.Column width={6}>
                 <Header
                   as="h3"
-                  content="Número telefónico"
+                  content="Celular: "
                   subheader={` ${user.phone_number}`}
                 />
               </Grid.Column>
