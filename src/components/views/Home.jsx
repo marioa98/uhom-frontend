@@ -1,17 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Hero from "../dumb/Hero";
 import Banner from "../dumb/Banner";
-import { UserContext } from "../../App"
-import {getNames} from "../../services/userInfo";
+import { useSessionInfo } from "../../services/sessionInfo";
+import { useUserContext } from "../../UserContext";
 
 
 const Home = () => {
-  const {user} = useContext(UserContext);
+  const { isLogged } = useUserContext();
 
-  const subtitle = () => user.isLogged 
-    ? `Bienvenido ${getNames()}.`
-    : "Reserva tu visita gratuitamente."
+  const session = useSessionInfo();
+
+  const subtitle = () => isLogged 
+    ? `Bienvenido ${ session.names }.`
+    : "Registrate y visita la casa de tus sueños."
   
 
   return (

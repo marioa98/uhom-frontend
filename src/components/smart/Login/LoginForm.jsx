@@ -1,33 +1,32 @@
 import React from 'react';
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers";
-import {Button, Form, Message} from 'semantic-ui-react';
+import {Button, Form } from 'semantic-ui-react';
 
 import { loginValidations } from "../../../services/validations/validationSchemas"
 import loginHandler from "../../../services/sessionHandlers/authService";
-import { UserContext } from "../../../App";
 
 import "../../../assets/styles/General/forms.css";
 import "../../../assets/styles/General/divs.css";
-import "../../../assets/styles/General/errors.css"
+import "../../../assets/styles/General/errors.css";
+import { useUserDispatch } from '../../../UserContext';
 
 export function LoginForm(){
-  const { dispatch } = React.useContext(UserContext);
+  const dispatch = useUserDispatch();
   const {register, handleSubmit, errors, setError} = useForm({
     resolver: yupResolver(loginValidations)
   })
 
   const submit = async (data, event) => {
-    event.preventDefault();
     const response = await loginHandler(data, dispatch)
-    if(response.status === 401) await setError("invalidKeys", {
+    if( response && response.status === 401) await setError("invalidKeys", {
       type: "serverResponse",
       message: "La combinación de email y contraseña es incorrecta"
     })
   }
 
   return(
-    <Form className="large basic-form" onSubmit={handleSubmit(submit)}>
+    <Form className="large dark" onSubmit={handleSubmit(submit)}>
       {
         errors.invalidKeys && <p className="dark-error fluid-error">{errors.invalidKeys.message}</p>
       }
@@ -36,6 +35,7 @@ export function LoginForm(){
         <div className="ui input">
           <input
             name="email"
+            type="email"
             placeholder="Email"
             ref={register}
           />

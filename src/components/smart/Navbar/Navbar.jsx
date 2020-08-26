@@ -1,15 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import {SessionOptions} from "./SessionOptions";
 import { Avatar } from "./Avatar";
-import '../../../assets/styles/General/navbar.css'
-import {UserContext} from "../../../App"
+import '../../../assets/styles/General/navbar.css';
+import { useUserContext } from "../../../UserContext";
 
 export default function Navbar(props){
   
   const [isOpen, setState] = useState(false);
-  const { user } = useContext(UserContext);
+  const { isLogged } = useUserContext();
+
   return (
     <nav className="navbar">
       <div className="nav-center">
@@ -46,7 +47,7 @@ export default function Navbar(props){
       </div>
       
       <div className="nav-right">
-        {user.isLogged ? <Avatar/> : <SessionOptions/>}
+        { isLogged ? <Avatar/> : <SessionOptions/> }
       </div>
     </nav>
   );

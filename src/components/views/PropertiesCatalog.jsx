@@ -30,7 +30,7 @@ function PropertiesCatalog(props){
     const currentPage = data.activePage
 
     setPage(currentPage)
-    history.push({
+    history.replace({
       search: `?page=${currentPage}`
     })
   }
@@ -48,7 +48,7 @@ function PropertiesCatalog(props){
 
   return(
     <>
-      <ShowCase/>
+      {/* <ShowCase/> */}
       { 
         properties.length !== 0
         ? <PropertiesList properties={properties} paginationProps={paginationProps}/>

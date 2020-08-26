@@ -2,3 +2,8 @@
   overflow: auto;
   height: 150px;
 }
+
+.ui.segment.profile-segment{
+  background: rgba(45,126,173,1);
+  height: auto;
+}
