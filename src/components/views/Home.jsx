@@ -13,7 +13,7 @@ const Home = () => {
 
   const subtitle = () => isLogged 
     ? `Bienvenido ${ session.names }.`
-    : "Reserva tu visita gratuitamente."
+    : "Registrate y visita la casa de tus sueños."
   
 
   return (
