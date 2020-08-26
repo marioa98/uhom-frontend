@@ -48,7 +48,7 @@ function PropertiesCatalog(props){
 
   return(
     <>
-      <ShowCase/>
+      {/* <ShowCase/> */}
       { 
         properties.length !== 0
         ? <PropertiesList properties={properties} paginationProps={paginationProps}/>

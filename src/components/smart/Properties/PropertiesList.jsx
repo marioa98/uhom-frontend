@@ -7,7 +7,6 @@ export default function PropertiesList(props){
   const {properties, paginationProps} = props
   return(
     <Grid stackable columns={3} padded>
-      <Paginator {...paginationProps}/>
       <Grid.Row centered>
         {
          properties.map(property => 
