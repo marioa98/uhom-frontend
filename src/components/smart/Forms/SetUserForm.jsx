@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers";
-import { signupValidations, validationsAfterSubmit } from "../../../services/validations/validationSchemas"
+import { notRequiredValidations, signupValidations, validationsAfterSubmit } from "../../../services/validations/validationSchemas"
 import { Button, Divider, Form, Icon } from "semantic-ui-react";
 import Cleave from "cleave.js/react";
 import "../../../assets/styles/General/divs.css";
@@ -17,10 +17,14 @@ export default function SetUserForm(props){
     extraClasses,
     isCancelable,
     iconName,
-    submitButtonMessage
+    submitButtonMessage,
+    notRequired
   } = props
+
+  const setResolver = () => notRequired ? notRequiredValidations : signupValidations
+
   const { register, handleSubmit, errors, control, setError } = useForm({
-    resolver: yupResolver(signupValidations)
+    resolver: yupResolver(setResolver())
   });
 
   useEffect(() => {
@@ -32,12 +36,12 @@ export default function SetUserForm(props){
 
   const setValue = (userField) => user && user[`${userField}`] ? user[`${userField}`] : null
 
-  const formattedPhone = (phone) => phone.split('-').join("")
+  const requiredField = () => notRequired ? "" : "required"
 
   return(
     <>
       <Form className={`large ${extraClasses || ''}`} onSubmit={ handleSubmit(submitionHandler)}>
-        <Form.Field required>
+        <Form.Field className={requiredField()}>
           <label> Nombre(s): </label>
           <div className="ui input">
             <input
@@ -50,7 +54,7 @@ export default function SetUserForm(props){
           {errors.names && <p className="dark-error">{errors.names.message}</p> }
         </Form.Field>
 
-        <Form.Field required>
+        <Form.Field className={requiredField()}>
           <label> Apellido(s): </label>
           <div className="ui input">
             <input
@@ -64,7 +68,7 @@ export default function SetUserForm(props){
         </Form.Field>
 
         <Form.Group widths="equal">
-          <Form.Field required>
+          <Form.Field className={requiredField()}>
             <label> Email: </label>
             <div className="ui input">
               <input
@@ -78,12 +82,10 @@ export default function SetUserForm(props){
             {errors.email && <p className="dark-error">{errors.email.message}</p> }
           </Form.Field>
           
-          <Form.Field required>
+          <Form.Field className={requiredField()}>
             <label> Celular: </label>
             <div className="ui input">
               <Controller
-                name="phone_number"
-                control={control}
                 as={
                   <Cleave
                     options={{
@@ -94,6 +96,9 @@ export default function SetUserForm(props){
                     placeholder="Celular"
                   />
                 }
+                defaultValue={setValue('phone_number')}
+                name="phone_number"
+                control={control}
               />
             </div>
             {errors.phone_number && <p className="dark-error">{errors.phone_number.message}</p> }
@@ -102,7 +107,7 @@ export default function SetUserForm(props){
 
         <Form.Group widths="equal">
 
-          <Form.Field required>
+          <Form.Field className={requiredField()}>
             <label> Contraseña: </label>
             <div className="ui input">
               <input
@@ -115,7 +120,7 @@ export default function SetUserForm(props){
             {errors.password && <p className="dark-error">{errors.password.message}</p> }
           </Form.Field>
 
-          <Form.Field required>
+          <Form.Field className={requiredField()}>
             <label> Confirmar contraseña: </label>
             <div className="ui input">
               <input

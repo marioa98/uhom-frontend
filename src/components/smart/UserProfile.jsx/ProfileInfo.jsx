@@ -3,6 +3,7 @@ import { Container, Header, Message } from "semantic-ui-react";
 import UsersController from "../../../controllers/UsersController";
 import { useSessionInfo } from "../../../services/sessionInfo";
 import getUser from "../../../services/UsersService";
+import { cleanEmpties } from "../../../services/validations/dataFormater";
 import SetUserForm from "../Forms/SetUserForm";
 import UserInfo from "./Info/UserInfo";
 
@@ -24,7 +25,8 @@ export default function ProfileInfo(){
   const handleEdition = () => setEditable(!isEditable)
 
   const updateUser = (data, event) => {
-    UsersController.update(session.id, data, session.authorization)
+    const cleanData = cleanEmpties(data)
+    UsersController.update(session.id, cleanData, session.authorization)
       .then(() => {
         window.location.reload();
         setUpdate(true)
@@ -58,6 +60,7 @@ export default function ProfileInfo(){
               isCancelable={true}
               submitButtonMessage="Actualizar"
               iconName="edit"
+              notRequired={true}
             />
           : <UserInfo user={user} handleEdition={handleEdition} />
       }

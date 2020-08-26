@@ -1,6 +1,6 @@
 import React from "react"
 import { Dropdown, Image } from "semantic-ui-react";
-import { Redirect, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import "../../../assets/styles/General/icons.css"
 import { logoutHandler } from "../../../services/sessionHandlers/authService";
 import { useSessionInfo } from "../../../services/sessionInfo"
