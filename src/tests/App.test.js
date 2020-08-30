@@ -1,8 +1,13 @@
 import React from 'react';
-import { shallow } from "enzyme"
+import { mount } from "enzyme"
 import App from '../App';
 import "./config"
 
-it('renders <App/>', () => {
-  shallow(<App/>);
-});
+describe('<App/>', () => {
+  
+  it('renders correctly', () => {
+    const wrapper = mount(<App/>)
+    expect(wrapper.type()).toEqual(App)
+  })
+  
+})
