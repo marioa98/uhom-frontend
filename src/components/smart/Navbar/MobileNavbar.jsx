@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Container, Grid, Icon, Menu, Segment, Sidebar } from "semantic-ui-react";
+import { Container, Divider, Grid, Icon, Menu, Segment, Sidebar } from "semantic-ui-react";
 import { useUserContext } from "../../../UserContext";
+import SidebarLogo from "../Segments/SidebarLogo";
 import { Avatar } from "./Avatar";
 import NavbarItems from "./NavbarItems";
 import { SessionOptions } from "./SessionOptions";
@@ -24,6 +25,8 @@ export default function MobileNavbar(props){
             vertical
             visible={isOpen}
           > 
+            <SidebarLogo/>
+            <Divider/>
             <NavbarItems
               isMobile={true}
               handleSidebar={handleSidebar}

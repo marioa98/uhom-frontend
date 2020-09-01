@@ -12,6 +12,7 @@
 
 .dark-bg-solid h3{
   color: var(--mainWhite);
-  margin-bottom: 2rem;
-  margin-top: 2rem;
+  margin-bottom: 0.5em;
+  /* margin-bottom: 2rem;
+  margin-top: 2rem; */
 }
