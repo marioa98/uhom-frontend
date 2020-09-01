@@ -50,7 +50,7 @@ function PropertiesCatalog(props){
     <>
       {/* <ShowCase/> */}
       { 
-        properties.length !== 0
+        properties && properties.length !== 0
         ? <PropertiesList properties={properties} paginationProps={paginationProps}/>
         : <NoResultsMessage message={noResultsMessage}/>
       }
