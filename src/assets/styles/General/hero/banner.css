@@ -1,12 +1,18 @@
 /* Banner */
 .banner {
-  display: inline-block;
-  /* background: rgba(0, 0, 0, 0.5); */
-  color: var(--mainWhite);
+  display: inline;
+  vertical-align: middle;
   padding: 2rem 1rem;
   text-align: center;
-  /* text-transform: capitalize; */
   letter-spacing: var(--mainSpacing);
+  top: 35%;
+  left: 25%;
+  right: 25%;
+  position: absolute;
+}
+
+.dark{
+  color: var(--mainWhite);
 }
 
 .banner h1 {

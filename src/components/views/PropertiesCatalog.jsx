@@ -1,12 +1,12 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom";
 
 import PropertiesList from "../smart/Properties/PropertiesList";
 import ShowCase from '../smart/showcase/ShowCase';
-import {NoResultsMessage} from "../smart/Properties/NoResultsMessage";
 import {getCurrentPageByQuery, getTotalPages, getValidPage} from "../../services/pagination/PaginationService";
 import { propertyList } from "../../services/PropertiesService";
+import Banner from "../dumb/Banner";
 
 function PropertiesCatalog(props){
 
@@ -17,6 +17,11 @@ function PropertiesCatalog(props){
   const noResultsMessage = "No se encuentraron propiedades con las características especificadas."
   
   const history = useHistory();
+  
+  const updateTotalPages = (total_items, per_page) => {
+    const total = getTotalPages(total_items, per_page)
+    if(total !== totalPages) setTotalPages(total);
+  }
   
   React.useEffect(() => {
     (async () => {
@@ -35,10 +40,6 @@ function PropertiesCatalog(props){
     })
   }
 
-  const updateTotalPages = (total_items, per_page) => {
-    const total = getTotalPages(total_items, per_page)
-    if(total !== totalPages) setTotalPages(total);
-  }
 
   const paginationProps = {
     totalPages: totalPages,
@@ -52,7 +53,10 @@ function PropertiesCatalog(props){
       { 
         properties && properties.length !== 0
         ? <PropertiesList properties={properties} paginationProps={paginationProps}/>
-        : <NoResultsMessage message={noResultsMessage}/>
+        : <Banner 
+            title="Ups!" 
+            subtitle={noResultsMessage}
+          />
       }
     </>
   )
