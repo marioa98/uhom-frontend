@@ -3,6 +3,7 @@ import "../../assets/styles/General/backgrounds.css"
 import {LoginForm} from "../smart/Login/LoginForm";
 import { Link, Redirect, withRouter} from 'react-router-dom';
 import { useUserContext } from '../../UserContext';
+import FormLogoHeader from '../smart/Segments/FormLogoHeader';
 
 function Login(){
 
@@ -13,12 +14,12 @@ function Login(){
     { isLogged
       ? <Redirect to="/properties"/>
       : <div className="dark-bg-solid">
-        <h3>Inicia sesión en GoHome's</h3>
-        <LoginForm/>
-        <p className="general-callout">
-          ¿Aún no tienes cuenta? <Link to="/signin">Registrate aquí.</Link>
-        </p>
-      </div>
+          <FormLogoHeader message="Inicia sesión en GoHome's"/>
+          <LoginForm/>
+          <p className="general-callout">
+            ¿Aún no tienes cuenta? <Link to="/signin">Registrate aquí.</Link>
+          </p>
+        </div>
     }
     </>
   )

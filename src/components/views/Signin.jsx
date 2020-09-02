@@ -6,6 +6,7 @@ import { useUserContext, useUserDispatch } from '../../UserContext';
 import UsersController from '../../controllers/UsersController';
 import loginHandler from '../../services/sessionHandlers/authService';
 import SetUserForm from '../smart/Forms/SetUserForm';
+import FormLogoHeader from '../smart/Segments/FormLogoHeader';
 
 function Signin(){
   const { isLogged } = useUserContext();
@@ -30,7 +31,9 @@ function Signin(){
         isLogged
         ? <Redirect to="/properties"/>
         : <div className="dark-bg-solid">
-            <h3>Registrate con nosotros</h3>
+            <FormLogoHeader
+              message="Registrate con nosotros"
+            />
               <SetUserForm
                 submitionHandler={suscribe}
                 responseErrors={responseErrors}

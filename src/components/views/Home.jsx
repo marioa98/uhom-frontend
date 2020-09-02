@@ -22,6 +22,7 @@ const Home = () => {
         <Banner
           title="GoHOME's"
           subtitle={subtitle()}
+          dark
         >
           <Link to="/properties" className="btn-primary">
             <strong>Nuestras casas</strong>
