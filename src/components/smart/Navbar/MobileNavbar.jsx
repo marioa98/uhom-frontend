@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import { Container, Divider, Grid, Icon, Menu, Segment, Sidebar } from "semantic-ui-react";
-import { useUserContext } from "../../../UserContext";
 import SidebarLogo from "../Segments/SidebarLogo";
-import { Avatar } from "./Avatar";
 import NavbarItems from "./NavbarItems";
-import { SessionOptions } from "./SessionOptions";
+import NavbarRightItems from "./NavbarRightItems";
 
 export default function MobileNavbar(props){
   
   const { children } = props
   const [isOpen, setOpen] = useState(false);
-  const { isLogged } = useUserContext();
 
   const handleSidebar = () => setOpen(!isOpen)
 
@@ -45,9 +42,7 @@ export default function MobileNavbar(props){
                     <Icon name="sidebar"/>
                   </Menu.Item>
 
-                  <Menu.Item position="right">
-                    { isLogged ? <Avatar/> : <SessionOptions/> }
-                  </Menu.Item>
+                  <NavbarRightItems/>
                 </Menu>
               </Container>
             </Segment>
