@@ -1,7 +1,7 @@
 import faker from "faker"
 import { objectWithEmpties, validObject } from "../../../__mocks__/defaults/objectDefaults";
 import { cleanEmpties, useCRLF } from "../../../../services/validations/dataFormater";
-import { testedHook } from "../../../__mocks__/TestComponent";
+import { testedHook } from "../../../__mocks__/utils/TestHook";
 
 describe("cleanEmpties()", () => {
   it("should return an object with empty values removed", () => {

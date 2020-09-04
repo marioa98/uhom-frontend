@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import "../config";
+import "../../config";
 
 function TestHook({callback}){
   callback();

@@ -11,7 +11,7 @@ const usersReducer = (state, action) => {
       return {
         ...state,
         isLogged: false,
-        user: null
+        sessionInfo: {}
       }
     default:
       return state;
