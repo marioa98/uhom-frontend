@@ -1,13 +1,13 @@
 import React from "react";
 import { Header, List, Segment } from "semantic-ui-react";
 import "../../../../assets/styles/General/segments.css";
+import { useCRLF } from "../../../../services/validations/dataFormater";
 
 export default function ExtraDescription(props){
   const {extraDescription} = props
-  
-  const textFormatted = text => {
-    return text ? text.split("\n") : []
-  }
+  const defaultDescription = "Esta propiedad no tiene descripción adicional";
+
+  const items = useCRLF(extraDescription, defaultDescription);
 
   return(
     <Segment>
@@ -15,7 +15,7 @@ export default function ExtraDescription(props){
         Descripción adicional
       </Header>
       <Segment className="scrollable">
-        <List items={textFormatted(extraDescription)}/>
+        <List items={items}/>
       </Segment>
     </Segment>
   )

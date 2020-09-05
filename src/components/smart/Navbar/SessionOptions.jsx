@@ -1,19 +1,16 @@
 import React from 'react';
 import "../../../assets/styles/General/buttons.css";
 import {Button} from "semantic-ui-react";
-import {useHistory} from 'react-router-dom';
+import useNavigation from '../../../services/hooks/historyNavigation';
 
 export function SessionOptions(){
-  const history = useHistory();
 
-  const goTo = (path) => {
-    history.push(path)
-  }
+  const goTo = useNavigation();
 
   return(
     <div>
       <Button.Group size="small">
-        <Button className="btn-signin" onClick={() => goTo("/signin")}>
+        <Button className="btn-signin" onClick={() => goTo('/signin')}>
           Registrarse
         </Button>
         <Button.Or text="o"/>

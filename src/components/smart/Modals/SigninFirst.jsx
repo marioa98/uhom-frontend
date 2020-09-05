@@ -1,15 +1,11 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import { Button, Modal } from "semantic-ui-react";
 import "../../../assets/styles/General/buttons.css";
+import useNavigation from "../../../services/hooks/historyNavigation";
 
 export default function SigninFirst(props){
   const { isOpen, handleModal } = props
-  const history = useHistory();
-
-  const signin = () => {
-    history.push('/signin')
-  }
+  const goTo = useNavigation();
 
   return(
     <Modal
@@ -29,7 +25,7 @@ export default function SigninFirst(props){
           Cancelar
         </Button>
 
-        <Button className="btn-login" onClick={() => signin()} icon>
+        <Button className="btn-login" onClick={() => goTo('/signin')} icon>
           Registrarse
         </Button>
       </Modal.Actions>

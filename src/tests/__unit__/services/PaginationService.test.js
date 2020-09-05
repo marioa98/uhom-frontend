@@ -1,4 +1,4 @@
-import { getTotalPages, getCurrentPageByQuery, getValidPage } from "../../services/pagination/PaginationService"
+import { getTotalPages, getCurrentPageByQuery, getValidPage } from "../../../services/pagination/PaginationService"
 
 function randomNumber(range) {
   return Math.floor(Math.random() * range);

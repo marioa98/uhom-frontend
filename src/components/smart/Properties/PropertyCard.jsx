@@ -2,15 +2,15 @@ import React from "react";
 import axios from "axios"
 import { Card, Grid } from "semantic-ui-react";
 import "../../../assets/styles/General/cards.css"
-import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import useNavigation from "../../../services/hooks/historyNavigation";
 
 export default function PropertyCard(props){
   const {uuid, images,address, price, location, bathrooms, bedrooms, square_meters} 
     = props.property_info
   const {city, state} = location
 
-  const history = useHistory();
-  const goTo = path => history.push(path)
+  const goTo = useNavigation();
 
   const imgUri = `${axios.defaults.baseURL}${images[0]}`
   return(

@@ -1,5 +1,5 @@
-import { response } from "../__mocks__/localStorage/data"
-import { clearLocalStorage, setLocalStorage, setSessionItem } from "../../services/sessionHandlers/localStorageHandler"
+import { response } from "../../__mocks__/localStorage/data"
+import { clearLocalStorage, setLocalStorage, setSessionItem } from "../../../services/sessionHandlers/localStorageHandler"
 
 function getFromLocalStorage(item){
   return localStorage.getItem(item)

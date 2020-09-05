@@ -1,15 +1,18 @@
 import React from "react"
 import { Dropdown, Image } from "semantic-ui-react";
-import { useHistory } from "react-router-dom"
-import "../../../assets/styles/General/icons.css"
 import { logoutHandler } from "../../../services/sessionHandlers/authService";
 import { useSessionInfo } from "../../../services/sessionInfo"
 import { useUserDispatch } from "../../../UserContext";
+import useNavigation from "../../../services/hooks/historyNavigation";
+import redirectTo from "../../../services/validations/pathValidations";
+import "../../../assets/styles/General/icons.css";
 
 export function Avatar(){
   const session = useSessionInfo();
   const dispatch = useUserDispatch();
-  const history = useHistory();
+  const BASE_URI = `/user/${session.id}`
+
+  const goTo = useNavigation();
 
   const trigger = (
     <span>
@@ -21,21 +24,10 @@ export function Avatar(){
     </span>
   )
 
-  const pathAfterLogout = () => {
-    const pathRegexp = /\/user/
-    const currentPath = history.location.pathname
-    return pathRegexp.test(currentPath) ? '/' : currentPath
-  }
-
   const logout = () => {
     logoutHandler(session.authorization, dispatch);
-    history.push(pathAfterLogout())
+    goTo(redirectTo(BASE_URI, "/"));
   }
-
-  const goTo = section => {
-    history.push(`/user/${session.id}/${section}`)
-  }
-
   
   return(
     <div>
@@ -49,8 +41,8 @@ export function Avatar(){
 
           <Dropdown.Divider />
           
-          <Dropdown.Item icon='user' text='Mi Perfil' onClick={() => goTo('info')}/>
-          <Dropdown.Item icon='heart' text='Mis Casas' onClick={() => goTo('my-likes')}/>
+          <Dropdown.Item icon='user' text='Mi Perfil' onClick={() => goTo(`${BASE_URI}/info`)}/>
+          <Dropdown.Item icon='heart' text='Mis Casas' onClick={() => goTo(`${BASE_URI}/my-likes`)}/>
           
           <Dropdown.Divider />
           

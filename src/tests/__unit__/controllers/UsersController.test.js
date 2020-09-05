@@ -1,6 +1,6 @@
 import axios from "axios";
-import UsersController from "../../controllers/UsersController";
-import { validUser } from "../__mocks__/defaults/usersDefaults";
+import UsersController from "../../../controllers/UsersController";
+import { validUser } from "../../__mocks__/defaults/usersDefaults";
 jest.mock('axios');
 
 describe("create() method", () => {

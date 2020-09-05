@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Redirect, useHistory, useParams, withRouter } from "react-router-dom";
+import { Redirect, useParams, withRouter } from "react-router-dom";
+import useNavigation from "../../services/hooks/historyNavigation";
 import { useSessionInfo } from "../../services/sessionInfo";
 import ProfileHeader from "../smart/UserProfile.jsx/ProfileHeader";
 import { ProfileOptions } from "../smart/UserProfile.jsx/ProfileOptions";
@@ -8,7 +9,7 @@ function UserProfile(){
   const validSections = ['my-likes', 'info']
   const session = useSessionInfo()
   const { user_uuid, section } = useParams();
-  const history = useHistory();
+  const goTo = useNavigation();
   const [ activeIndex, setActiveIndex ] = useState(validSections.indexOf(section));
 
   const handleSectionChange = (e, data) => {
@@ -17,7 +18,7 @@ function UserProfile(){
     
     if(newIndex !== activeIndex){
       setActiveIndex(newIndex);
-      history.push(`/user/${session.id}/${newSection}`)
+      goTo(`/user/${session.id}/${newSection}`)
     }
   }
 

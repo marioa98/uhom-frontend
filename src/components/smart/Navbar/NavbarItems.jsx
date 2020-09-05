@@ -1,14 +1,13 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import { Menu } from "semantic-ui-react";
+import useNavigation from "../../../services/hooks/historyNavigation";
 
 export default function NavbarItems(props){
   const { isMobile, handleSidebar} = props
-  const history = useHistory();
+  const naviagate = useNavigation();
 
   const goTo = path => {
-    const currentPath = window.location.pathname;
-    if(currentPath !== path) history.push(path)
+    naviagate(path);
     if(isMobile) handleSidebar();
   }
 
