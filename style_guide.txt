@@ -1,0 +1,49 @@
+#0B3C5D     PRUSSIAN BLUE
+
+#328CC1     SKY BLUE
+
+#FCB332     AMARILLO MAMALON
+
+#1D2731     IBORY BLACK
+
+
+WHITE AND BLACK
+
+roboto
+
+unidades css : rem
+        
+        usar material ui
+
+
+navbar:
+    inicio
+    propiedades
+    recursos
+    acerca de
+    sig/login -----   avatar
+
+
+
+src
+    assets
+        styles
+        img
+    components (jsx)
+        dumb
+
+
+        smart
+
+        pages
+            -Landing
+            -ShowCase
+            resources
+                -PreguntasFrecuentes
+                -forum
+                -articles
+            -AboutUs
+
+    routes
+    services
+
