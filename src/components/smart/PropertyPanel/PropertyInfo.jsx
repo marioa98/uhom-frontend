@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Segment } from "semantic-ui-react";
-import AppopinmentButton from "../Communication/AppoinmentButton";
+import AppopinmentButton from "../Actions/AppoinmentButton";
 import ExtraDescription from "./PropertyDescription/ExtraDescription";
 import MainFeatures from "./PropertyDescription/MainFeatures";
 import MainInfo from "./PropertyDescription/MainInfo";
