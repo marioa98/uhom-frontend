@@ -15,10 +15,6 @@ describe('index() method', () => {
     
     await expect(PropertiesController.index('/properties?page=2'))
       .resolves.toEqual(properties)
-    
-    expect(axios.get).toHaveBeenCalledWith(
-      '/properties?page=2'
-    )
   })
 })
 

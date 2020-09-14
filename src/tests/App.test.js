@@ -1,7 +1,7 @@
 import React from 'react';
+import "./config"
 import { mount } from "enzyme"
 import App from '../App';
-import "./config"
 
 describe('<App/>', () => {
   
