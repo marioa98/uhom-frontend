@@ -42,27 +42,6 @@ export default function PropertyCarousel(props){
           })
         }
       </ReactSlick>
-      {/* <Carousel
-        showArrows={true}
-        showStatus={false}
-        autoPlay={false}
-        infiniteLoop={true}
-        swipeable={true}
-      >
-        {
-          images.map( (image, index) => {
-            const url = `${axios.defaults.baseURL}${image}`
-            return <ReactImageZoom
-              width={500}
-              height={400}
-              scale={1.5}
-              zoomWith={500}
-              zoomPosition="original"
-              img={url}
-            />
-          })
-        }
-      </Carousel> */}
     </Grid.Column>
   )
 }
