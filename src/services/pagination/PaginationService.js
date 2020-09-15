@@ -9,4 +9,4 @@ export const getCurrentPageByQuery = queryPage => {
 }
 
 export const getValidPage = currentPage =>
-  Number.isInteger(currentPage) ? currentPage : 1;
+  Number.isInteger(parseInt(currentPage)) ? currentPage : 1;
