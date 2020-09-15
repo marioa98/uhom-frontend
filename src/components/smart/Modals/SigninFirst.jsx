@@ -13,6 +13,7 @@ export default function SigninFirst(props){
       open={isOpen}
       size="tiny"
       onClose={() => handleModal()}
+      style={{top: "40%"}}
     >
       <Modal.Header> ¡Ups! Parece que aún no te has registrado </Modal.Header>
       <Modal.Content>
