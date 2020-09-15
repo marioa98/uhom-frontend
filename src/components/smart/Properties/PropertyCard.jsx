@@ -1,14 +1,25 @@
 import React from "react";
 import axios from "axios"
-import { Card, Grid } from "semantic-ui-react";
-import "../../../assets/styles/General/cards.css"
+import { Card, Divider, Grid, Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import useNavigation from "../../../services/hooks/historyNavigation";
+import LikeButton from "../Actions/LikeButton";
+import "../../../assets/styles/General/cards.css"
+import "../../../assets/styles/General/menus.css"
 
-export default function PropertyCard(props){
-  const {uuid, images,address, price, location, bathrooms, bedrooms, square_meters} 
-    = props.property_info
-  const {city, state} = location
+export default function PropertyCard({ propertyInfo }){
+  const {
+    uuid, 
+    images,
+    address,
+    price,
+    location,
+    bathrooms,
+    bedrooms,
+    square_meters,
+    likes_info: likesInfo
+  } = propertyInfo
+  const { city, state } = location
 
   const goTo = useNavigation();
 
@@ -27,6 +38,18 @@ export default function PropertyCard(props){
           <Card.Header>
             {price}
           </Card.Header>
+
+          <Divider hidden fitted/>
+          
+          <Card.Content>
+            <Menu borderless className="simple">
+              <LikeButton
+                likesInfo={likesInfo}
+                propertyId={uuid}
+              />
+            </Menu>
+          </Card.Content>
+
           <Card.Meta>
             <span>
               | {square_meters} mts<sup>2</sup> | {bedrooms} Recámara(s) | {bathrooms} Baño(s) |

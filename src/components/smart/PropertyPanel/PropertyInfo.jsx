@@ -5,18 +5,20 @@ import ExtraDescription from "./PropertyDescription/ExtraDescription";
 import MainFeatures from "./PropertyDescription/MainFeatures";
 import MainInfo from "./PropertyDescription/MainInfo";
 
-export default function PropertyInfo(props){
+export default function PropertyInfo({propertyInfo, propertyLocation}){
   
   const { 
-    price, 
     address, 
     bedrooms,
     bathrooms,
-    square_meters,
-    extra_description
-  } = props.propertyInfo
+    extra_description,
+    likes_info,
+    price,
+    square_meters
+  } = propertyInfo
 
-  const {city, state} = props.propertyLocation
+  const {city, state} = propertyLocation
+  console.log(likes_info);
 
   return(
     <Grid.Column width={6}>

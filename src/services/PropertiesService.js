@@ -1,7 +1,7 @@
 import PropertiesController from "../controllers/PropertiesController";
 
-export const propertyList = path => {
-  const response = PropertiesController.index(path)
+export const propertyList = (path, userId=null) => {
+  const response = PropertiesController.index(path, userId)
     .then(res => {
       if(res.status === 200){
         return {

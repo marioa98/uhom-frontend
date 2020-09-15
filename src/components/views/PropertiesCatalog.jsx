@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 
 import PropertiesList from "../smart/Properties/PropertiesList";
-import ShowCase from '../smart/showcase/ShowCase';
 import {getCurrentPageByQuery, getTotalPages, getValidPage} from "../../services/pagination/PaginationService";
 import { propertyList } from "../../services/PropertiesService";
 import Banner from "../dumb/Banner";
 import useNavigation from "../../services/hooks/historyNavigation";
+import { useSessionInfo } from "../../services/sessionInfo";
+import { useUserContext } from "../../UserContext";
 
 function PropertiesCatalog(props){
   const noResultsMessage = "No se encuentraron propiedades con las características especificadas."
   const PROPERTY_BASE_URI = "/properties?page=";
+  const { isLogged, sessionInfo } = useUserContext() || {};
+  const { id } = useSessionInfo() || {};
 
   const queryPage = getCurrentPageByQuery(props.location.search);
   const [page, setPage] = useState( getValidPage(queryPage) );
@@ -22,14 +25,14 @@ function PropertiesCatalog(props){
     const total = getTotalPages(total_items, per_page)
     if(total !== totalPages) setTotalPages(total);
   }
-  
-  React.useEffect(() => {
+
+  useEffect(() => {
     (async () => {
-      const results = await propertyList(`${PROPERTY_BASE_URI}${page}`);
+      const results = await propertyList(`${PROPERTY_BASE_URI}${page}`, id);
       setProperties(results.data);
       updateTotalPages(results.totalPages, results.itemsPerPage)
     })();
-  }, [page])
+  }, [isLogged, page])
 
   const handleChange = (event, data) => {
     const currentPage = data.activePage
@@ -47,7 +50,6 @@ function PropertiesCatalog(props){
 
   return(
     <>
-      {/* <ShowCase/> */}
       { 
         properties && properties.length !== 0
         ? <PropertiesList properties={properties} paginationProps={paginationProps}/>
