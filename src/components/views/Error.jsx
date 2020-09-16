@@ -2,16 +2,21 @@ import React from "react";
 import Hero from "../dumb/Hero";
 import Banner from "../dumb/Banner";
 import { Link } from "react-router-dom";
-const Error = () => {
+
+export default function Error({
+  status="404", 
+  message="Parece que la página solicitada no existe.", 
+  redirectionPath="/",
+  redirectionMessage="Regresar al inicio"
+}){
+
   return (
     <Hero hero="housesHero">
-      <Banner title="404" subtitle="No se encontro la pagina" dark>
-        <Link to="/" className="btn-primary">
-          Regresar al inicio
+      <Banner title={status} subtitle={message} dark>
+        <Link to={redirectionPath} className="btn-primary">
+          {redirectionMessage}
         </Link>
       </Banner>
     </Hero>
   );
-};
-
-export default Error;
+}
