@@ -2,43 +2,37 @@ import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 
 import PropertiesList from "../smart/Properties/PropertiesList";
-import {getCurrentPageByQuery, getTotalPages, getValidPage} from "../../services/pagination/PaginationService";
-import { propertyList } from "../../services/PropertiesService";
+import { getCurrentPageByQuery, getTotalPages, getValidPage } from "../../services/pagination/PaginationService";
 import Banner from "../dumb/Banner";
 import useNavigation from "../../services/hooks/historyNavigation";
 import { useSessionInfo } from "../../services/sessionInfo";
-import { useUserContext } from "../../UserContext";
 
-function PropertiesCatalog(props){
+import usePropertiesIndex from "../../services/hooks/propertiesHooks";
+
+function PropertiesCatalog({ location }){
+
   const noResultsMessage = "No se encuentraron propiedades con las características especificadas."
-  const PROPERTY_BASE_URI = "/properties?page=";
-  const { isLogged, sessionInfo } = useUserContext() || {};
   const { id } = useSessionInfo() || {};
-
-  const queryPage = getCurrentPageByQuery(props.location.search);
+  
+  const queryPage = getCurrentPageByQuery(location.search);
   const [page, setPage] = useState( getValidPage(queryPage) );
   const [totalPages, setTotalPages] = useState(1);
-  const [properties, setProperties] = useState([]);
-  const goTo = useNavigation('replace');
-  
-  const updateTotalPages = (total_items, per_page) => {
-    const total = getTotalPages(total_items, per_page)
-    if(total !== totalPages) setTotalPages(total);
+  const { properties, itemsPerPage, totalItems } = usePropertiesIndex(`/properties?page=${page}`, { user_id: id})
+  const goTo = useNavigation();
+
+  const updateTotalPages = () => {
+    const tmpTotal = getTotalPages(totalItems, itemsPerPage)
+    if(tmpTotal !== totalPages) setTotalPages(tmpTotal);
   }
 
   useEffect(() => {
-    (async () => {
-      const results = await propertyList(`${PROPERTY_BASE_URI}${page}`, id);
-      setProperties(results.data);
-      updateTotalPages(results.totalPages, results.itemsPerPage)
-    })();
-  }, [isLogged, page])
+    updateTotalPages()
+  }, [totalItems])
 
   const handleChange = (event, data) => {
     const currentPage = data.activePage
-
     setPage(currentPage)
-    goTo(`${PROPERTY_BASE_URI}${currentPage}`)
+    goTo(`/properties?page=${currentPage}`)
   }
 
 

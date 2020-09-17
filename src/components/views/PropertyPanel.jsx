@@ -1,42 +1,18 @@
-import React, { useState, useEffect } from "react";
-import {useParams} from "react-router-dom"
-import { Redirect, withRouter } from "react-router-dom/cjs/react-router-dom.min";
-import PropertiesController from "../../controllers/PropertiesController";
+import React from "react";
+import { useParams, withRouter } from "react-router-dom";
+import { useSessionInfo } from "../../services/sessionInfo";
 import Panel from "../smart/PropertyPanel/Panel"
-
-const defaultProperty = {
-  uuid: null,
-  images: [],
-  price: null,
-  address: null,
-  likes_info: {
-    total_likes: 0,
-    currently_liked: false
-  },
-  bedrooms: 0,
-  bathrooms: 0,
-  square_meters: 0.0,
-  extra_description: null,
-  location: {
-    city: null,
-    state: null,
-    country: null
-  }
-}
+import { usePropertyShow } from "../../services/hooks/propertiesHooks";
+import Error from "./Error"
+import Loading from "./Loading";
 
 function PropertyPanel(props){
   const { property_uuid } = useParams()
-  const [property, setProperty] = useState(defaultProperty);
-
-  useEffect(() => {
-    PropertiesController.show(property_uuid)
-    .then(res => {
-      if(res.status === 200){
-        setProperty(res.data)
-      }
-    })
-  }, [property_uuid])
+  const { id } = useSessionInfo() || {};
+  const { response, property, error } = usePropertyShow(`/properties/${property_uuid}`, { user_id: id})
   
+  if(!response) return <Loading/>
+
   return(
     <>
       {
@@ -44,7 +20,11 @@ function PropertyPanel(props){
         ? <Panel propertyInfo={property}
             propertyLocation={property.location}
           />
-        : <Redirect to="/properties" />
+        : <Error
+            message="Parece que la propiedad que buscas no existe."
+            redirectionPath="/properties"
+            redirectionMessage="Ver más propiedades."
+          />
       }
     </>
   )
