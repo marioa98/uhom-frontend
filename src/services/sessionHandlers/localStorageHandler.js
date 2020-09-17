@@ -1,6 +1,6 @@
-export const setLocalStorage = (res) => {
+export const setLocalStorage = (res, currentToken=null) => {
   const user = res.data
-  const token = res.headers.authorization
+  const token = res.headers.authorization || currentToken
   localStorage.setItem("session", setSessionItem(user, token))
 }
 

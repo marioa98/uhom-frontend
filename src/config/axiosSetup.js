@@ -9,5 +9,6 @@ const fetcher = (url, method, params={}, headers={}) =>
     timeout: 1000
   })
   .then(res => res)
+  .catch(err => err)
   
 export default fetcher;

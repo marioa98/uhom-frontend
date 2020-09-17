@@ -19,11 +19,6 @@ export default class UsersController{
     return axios.post(`/signin`, {user: {...data}})
   }
 
-  static show(uuid, token){
-    const headers = setAuthorizationHeaders(token)
-    return axios.get(`/users/${uuid}`, {...headers})
-  }
-
   static update(uuid, data, token){
     const headers = setAuthorizationHeaders(token)
     const userParams = setUserParams(data);
