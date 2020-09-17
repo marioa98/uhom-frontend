@@ -1,23 +1,17 @@
 import React, { useState } from "react";
-import { Button, Icon, Label, Menu } from "semantic-ui-react";
+import { Button, Menu } from "semantic-ui-react";
 import { useUserContext } from "../../../UserContext";
 import SigninFirst from "../Modals/SigninFirst";
 
 export default function LikeButton({ likesInfo, propertyId }){
-
-  // console.log(likesInfo)
   const {total_likes: totalLikes, currently_liked: currentlyLiked } = likesInfo
   const { isLogged } = useUserContext();
   const [isOpen, setToggle] = useState(false)
-  const [likes, setLikes] = useState(totalLikes);
 
   const openModal = () => setToggle(!isOpen)
 
   const handleLike = () => {
     if(!isLogged) openModal()
-    else{
-
-    }
   }
 
   return(

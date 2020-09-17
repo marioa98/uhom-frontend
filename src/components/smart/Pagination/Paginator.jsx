@@ -23,7 +23,6 @@ export default function Paginator(props){
               pointing
 
               activePage={currentPage}
-              defaultActivePage={currentPage}
               totalPages={totalPages}
               onPageChange={(event, data) => handleChange(event, data)}
             />
