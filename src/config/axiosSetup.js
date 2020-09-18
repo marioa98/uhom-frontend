@@ -8,7 +8,5 @@ const fetcher = (url, method, params={}, headers={}) =>
     params: params,
     timeout: 1000
   })
-  .then(res => res)
-  .catch(err => err)
   
 export default fetcher;

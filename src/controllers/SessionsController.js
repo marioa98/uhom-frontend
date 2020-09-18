@@ -1,16 +1,12 @@
 import axios from "axios"
+import { setHeaders, setUserParams } from "./requestFormatter"
 
 export default class SessionsController{
-  static login(data){
-    return axios.post(`/login`, {user: {...data}})
+  static login(user){
+    return axios.post(`/login`, setUserParams(user))
   }
 
   static logout(token){
-    const headers = {
-      headers: {
-        'Authorization': token
-      }
-    }
-    return axios.delete(`/logout`, headers)
+    return axios.delete(`/logout`, setHeaders(token))
   }
 }

@@ -1,28 +1,11 @@
 import axios from "axios";
-
-function setAuthorizationHeaders(token){
-  return{
-    headers: {
-      'Authorization': token
-    }
-  }
-}
-
-function setUserParams(data){
-  return {
-    user: {...data}
-  }
-}
-
+import { setHeaders, setUserParams } from "./requestFormatter";
 export default class UsersController{
-  static create(data){
-    return axios.post(`/signin`, {user: {...data}})
+  static create(user){
+    return axios.post(`/signin`, setUserParams(user))
   }
 
-  static update(uuid, data, token){
-    const headers = setAuthorizationHeaders(token)
-    const userParams = setUserParams(data);
-
-    return axios.patch(`/users/${uuid}`, {...userParams}, {...headers})
+  static update(uuid, user, token){
+    return axios.patch(`/users/${uuid}`, setUserParams(user), setHeaders(token))
   }
 }
