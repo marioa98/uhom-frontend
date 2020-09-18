@@ -1,20 +1,13 @@
 import axios from "axios";
+import { setHeaders } from "./requestFormatter";
 
 export default class LikesController{
-  static like(authorization, propertyId, userId){
-    const params = setParams(authorization, propertyId, userId);
-    return axios.post(`/properties/${propertyId}/like`)
+  static post(authorization, propertyId, userId){
+    return axios.post(`/properties/${propertyId}/like`, setParams(propertyId, userId), setHeaders(authorization))
   }
 }
 
-function setParams(authorization, propertyId, userId){
-  return {
-    headers: {
-      Authorization: authorization
-    },
-    body: {
-      session_id: userId,
-      property_id: propertyId
-    }
-  }
-}
+const setParams = (propertyId, userId) => ({
+  user_id: userId,
+  property_id: propertyId
+})

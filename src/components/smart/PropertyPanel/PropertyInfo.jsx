@@ -1,6 +1,7 @@
 import React from "react";
-import { Grid, Segment } from "semantic-ui-react";
+import { Grid, Menu, Segment } from "semantic-ui-react";
 import AppopinmentButton from "../Actions/AppoinmentButton";
+import LikeButton from "../Actions/LikeButton";
 import ExtraDescription from "./PropertyDescription/ExtraDescription";
 import MainFeatures from "./PropertyDescription/MainFeatures";
 import MainInfo from "./PropertyDescription/MainInfo";
@@ -8,6 +9,7 @@ import MainInfo from "./PropertyDescription/MainInfo";
 export default function PropertyInfo({propertyInfo, propertyLocation}){
   
   const { 
+    uuid,
     address, 
     bedrooms,
     bathrooms,
@@ -18,7 +20,6 @@ export default function PropertyInfo({propertyInfo, propertyLocation}){
   } = propertyInfo
 
   const {city, state} = propertyLocation
-  console.log(likes_info);
 
   return(
     <Grid.Column width={6}>
@@ -27,6 +28,14 @@ export default function PropertyInfo({propertyInfo, propertyLocation}){
           price={price}
           fullAddress={`${address}, ${city}, ${state}.`}
         />
+        
+        <Menu borderless secondary>
+          <LikeButton
+            likesInfo={likes_info}
+            propertyId={uuid}
+          />
+        </Menu>
+
         <MainFeatures
           features={{bedrooms, bathrooms, square_meters}}
         />

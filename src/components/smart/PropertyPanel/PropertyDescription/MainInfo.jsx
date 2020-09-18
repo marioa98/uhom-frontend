@@ -1,6 +1,5 @@
 import React from "react"
 import { Header, Segment } from "semantic-ui-react"
-import LikeButton from "../../Actions/LikeButton"
 
 export default function MainInfo(props){
 
@@ -13,7 +12,6 @@ export default function MainInfo(props){
         content={price}
         subheader={fullAddress}
       />
-      {/* <LikeButton/> */}
     </Segment>
   )
 }
