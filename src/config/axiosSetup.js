@@ -1,8 +1,7 @@
 import axios from "axios";
 
-const fetcher = (url, method, params={}, headers={}) =>
+const fetcher = (url, params={}, headers={}) =>
   axios({
-    method: method,
     url: url,
     headers: headers,
     params: params,
