@@ -7,6 +7,7 @@ import SigninFirst from "../Modals/SigninFirst";
 
 export default function LikeButton({ likesInfo, propertyId }){
   const {total_likes: totalLikes, currently_liked: currentlyLiked } = likesInfo
+  const { isLogged } = useUserContext();
   const session = useSessionInfo();
   const [likesTotal, setTotal] = useState(totalLikes)
   const [isLiked, setLikeState] = useState(currentlyLiked)
@@ -15,7 +16,7 @@ export default function LikeButton({ likesInfo, propertyId }){
   const openModal = () => setToggle(!isOpen)
 
   const handleLike = () => {
-    if(session) {
+    if(isLogged) {
       LikesController.post(session.authorization, propertyId, session.id)
         .then(() => {
           updateTotalLikes();

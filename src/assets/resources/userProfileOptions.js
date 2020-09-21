@@ -1,26 +1,21 @@
 import React from "react"
 import { Tab } from "semantic-ui-react";
+import UserLikes from "../../components/smart/UserProfile.jsx/Likes/UserLikes";
 import ProfileInfo from "../../components/smart/UserProfile.jsx/ProfileInfo";
 
 export const panes = [
   {
-    menuItem: 'Mis Casas',
-    pane: {
-      key: 'my-likes',
-      content:(
-        <Tab.Pane>Mis Casas</Tab.Pane>
-      )
-    }
+    menuItem: { key: 'my-likes', content: 'Mis Casas'},
+    render: () => 
+      <Tab.Pane>
+        <UserLikes/>
+      </Tab.Pane>
   },
   {
-    menuItem: 'Información',
-    pane: {
-      key: 'info',
-      content:(
-        <Tab.Pane>
-          <ProfileInfo/>
-        </Tab.Pane>
-      )
-    }
+    menuItem: { key: 'info', content: 'Información'},
+    render: () => 
+      <Tab.Pane>
+        <ProfileInfo/>
+      </Tab.Pane>
   }
 ]

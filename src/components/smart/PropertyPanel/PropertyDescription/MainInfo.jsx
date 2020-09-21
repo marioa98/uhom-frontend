@@ -1,10 +1,7 @@
 import React from "react"
 import { Header, Segment } from "semantic-ui-react"
 
-export default function MainInfo(props){
-
-  const {price, fullAddress, likesInfo} = props
-
+export default function MainInfo({price, fullAddress}){
   return(
     <Segment padded>
       <Header

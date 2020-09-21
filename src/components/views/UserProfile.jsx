@@ -13,12 +13,11 @@ function UserProfile(){
   const [ activeIndex, setActiveIndex ] = useState(validSections.indexOf(section));
 
   const handleSectionChange = (e, data) => {
-    const newIndex = data.activeIndex
-    const newSection = data.panes[newIndex].pane.key
+    const { activeIndex: newIndex } = data
     
     if(newIndex !== activeIndex){
       setActiveIndex(newIndex);
-      goTo(`/user/${session.id}/${newSection}`)
+      goTo(`/user/${session.id}/${validSections[newIndex]}`)
     }
   }
 

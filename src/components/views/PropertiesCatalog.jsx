@@ -8,6 +8,7 @@ import useNavigation from "../../services/hooks/historyNavigation";
 import { useSessionInfo } from "../../services/sessionInfo";
 
 import usePropertiesIndex from "../../services/hooks/propertiesHooks";
+import Loading from "./Loading";
 
 function PropertiesCatalog({ location }){
 
@@ -17,7 +18,7 @@ function PropertiesCatalog({ location }){
   const queryPage = getCurrentPageByQuery(location.search);
   const [page, setPage] = useState( getValidPage(queryPage) );
   const [totalPages, setTotalPages] = useState(1);
-  const { properties, itemsPerPage, totalItems } = usePropertiesIndex(`/properties?page=${page}`, { user_id: id})
+  const { properties, itemsPerPage, totalItems, error } = usePropertiesIndex(`/properties?page=${page}`, { user_id: id})
   const goTo = useNavigation();
 
   const updateTotalPages = () => {
@@ -42,10 +43,12 @@ function PropertiesCatalog({ location }){
     handleChange: handleChange
   }
 
+  if(!properties) return <Loading/>
+
   return(
     <>
       { 
-        properties && properties.length !== 0
+        properties.length !== 0
         ? <PropertiesList properties={properties} paginationProps={paginationProps}/>
         : <Banner 
             title="Ups!" 
