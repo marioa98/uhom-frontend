@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
+import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 
 import PropertiesList from "../smart/Properties/PropertiesList";
 import ShowCase from '../smart/showcase/ShowCase';
@@ -22,12 +22,16 @@ function PropertiesCatalog(props){
     const total = getTotalPages(total_items, per_page)
     if(total !== totalPages) setTotalPages(total);
   }
+
+  const getProperties = async ({page: pageParam, params}) => {
+    const results = await propertyList(`${PROPERTY_BASE_URI}${pageParam || page}`, params);
+    setProperties(results.data);
+    updateTotalPages(results.totalPages, results.itemsPerPage)
+  }
   
-  React.useEffect(() => {
+  useEffect(() => {
     (async () => {
-      const results = await propertyList(`${PROPERTY_BASE_URI}${page}`);
-      setProperties(results.data);
-      updateTotalPages(results.totalPages, results.itemsPerPage)
+      getProperties({ page })
     })();
   }, [page])
 
@@ -47,7 +51,7 @@ function PropertiesCatalog(props){
 
   return(
     <>
-      {/* <ShowCase/> */}
+      <ShowCase getProperties={getProperties}/>
       { 
         properties && properties.length !== 0
         ? <PropertiesList properties={properties} paginationProps={paginationProps}/>

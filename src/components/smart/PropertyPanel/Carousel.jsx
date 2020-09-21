@@ -35,7 +35,6 @@ export default function PropertyCarousel(props){
                   shouldHideHintAfterFirstActivation
                   enlargedImagePosition="over"
                   hintTextMouse={HINT_MESSAGE}
-                  hintTextMouse={HINT_MESSAGE}
                 />
               </div>
             )
