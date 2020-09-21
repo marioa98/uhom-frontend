@@ -4,18 +4,13 @@ import CaracteristicFilter from './types/CaracteristicFilter'
 import '../../../assets/styles/General/showcase.css'
 
 
-const ShowCase = () => {
+const ShowCase = ({ getProperties }) => {
   return (
     <>
-        
       <div className="filter-center">
-       
-        <CaracteristicFilter/>
-        <SelectiveFilter/>
+        <CaracteristicFilter getProperties={getProperties}/>
+        {/* <SelectiveFilter/> */}
       </div>
-     
-      
-      
     </>
   );
 };

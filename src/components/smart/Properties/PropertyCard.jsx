@@ -12,7 +12,7 @@ export default function PropertyCard(props){
 
   const goTo = useNavigation();
 
-  const imgUri = `${axios.defaults.baseURL}${images[0]}`
+  const imgUri = images ? `${axios.defaults.baseURL}${images[0]}` : ""
   return(
     <Grid.Column style={{paddingTop: "16px"}}>
       <Card centered fluid id={uuid}>

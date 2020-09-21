@@ -1,8 +1,8 @@
 import axios from "axios"
 
 export default class PropertiesController{
-  static index(path){
-    return axios.get(path)
+  static index(path, params){
+    return axios.get(path, { params })
   }
 
   static show(uuid){
