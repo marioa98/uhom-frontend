@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 export default function useNavigation(type){
   const history = useHistory();
@@ -9,6 +9,10 @@ export default function useNavigation(type){
   }
   
   return goTo;
+}
+
+export const useQuery = () => {
+  return new URLSearchParams(useLocation().search);
 }
 
 function setNavigation(history, path, type){

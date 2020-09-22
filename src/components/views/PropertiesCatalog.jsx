@@ -2,22 +2,22 @@ import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 
 import PropertiesList from "../smart/Properties/PropertiesList";
-import { getCurrentPageByQuery, getTotalPages, getValidPage } from "../../services/pagination/PaginationService";
+import { getTotalPages } from "../../services/pagination/PaginationService";
 import Banner from "../dumb/Banner";
-import useNavigation from "../../services/hooks/historyNavigation";
+import useNavigation, { useQuery } from "../../services/hooks/historyNavigation";
 import { useSessionInfo } from "../../services/sessionInfo";
 
 import usePropertiesIndex from "../../services/hooks/propertiesHooks";
 
-function PropertiesCatalog({ location }){
+function PropertiesCatalog(){
 
   const noResultsMessage = "No se encuentraron propiedades con las características especificadas."
   const { id } = useSessionInfo() || {};
   
-  const queryPage = getCurrentPageByQuery(location.search);
-  const [page, setPage] = useState( getValidPage(queryPage) );
+  const queryPage = useQuery();
+  const page = queryPage.get('page') || 1;
   const [totalPages, setTotalPages] = useState(1);
-  const { properties, itemsPerPage, totalItems } = usePropertiesIndex(`/properties?page=${page}`, { user_id: id})
+  const { properties, itemsPerPage, totalItems } = usePropertiesIndex(`/properties?page=${page}`, { user_id: id })
   const goTo = useNavigation();
 
   const updateTotalPages = () => {
@@ -31,7 +31,6 @@ function PropertiesCatalog({ location }){
 
   const handleChange = (event, data) => {
     const currentPage = data.activePage
-    setPage(currentPage)
     goTo(`/properties?page=${currentPage}`)
   }
 

@@ -10,7 +10,7 @@ export default function PropertiesList(props){
       <Grid.Row centered>
         {
          properties.map(property => 
-          <PropertyCard id={property.uuid} propertyInfo={property}/>
+          <PropertyCard key={property.uuid} id={property.uuid} propertyInfo={property}/>
          )
         }
       </Grid.Row>
